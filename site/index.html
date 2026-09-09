@@ -2,34 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gym log · Progress</title>
-<meta name="description" content="Workout history and progress, compared by exercise and equipment.">
+<title>Gym log</title>
+<meta name="description" content="Your training log, workout calendar, and progress.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="app.js"></script>
 </head>
-<body>
-<header><a class="brand" href="./">GYM<span> / </span>LOG</a><span class="muted">Your training record</span></header>
+<body data-page="home">
+<header class="site-header"><a class="brand" href="./">GYM<span> / </span>LOG</a><nav><a class="active" href="./">Home</a><a href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
 <main>
-<div class="heading"><div><p class="eyebrow">TRAINING JOURNAL</p><h1>Progress, in context.</h1></div><p id="updated" class="muted"></p></div>
-<section id="empty" hidden class="empty"><span class="empty-icon">↗</span><h2>Your first workout starts here.</h2><p>Log a workout in chat with its location, exercise, equipment, weight, and reps. Your history will appear here after it’s saved and published.</p><blockquote>“At Downtown today: dumbbell preacher curls, 20 lb per arm for 10 reps, 2 RIR.”</blockquote><p class="muted">Example only. No workouts have been recorded.</p></section>
-<div id="dashboard" hidden>
-<section class="filters" aria-label="Progress filters">
-<label>Exercise<select id="exercise"></select></label>
-<label>Location<select id="location"></select></label>
-<label>Equipment<select id="equipment"></select></label>
-<label>Display<select id="mode"><option value="normalized">Per limb</option><option value="raw">As recorded</option><option value="total">Total load</option></select></label>
-<label>Unit<select id="unit"><option>lb</option><option>kg</option></select></label>
-<label>Minimum reps<input id="minReps" type="number" min="1" value="1"></label>
-<label>Maximum reps<input id="maxReps" type="number" min="1" placeholder="Any"></label>
-<label>Effort<select id="effort"><option value="all">Any / unrecorded</option><option value="rir">RIR</option><option value="rpe">RPE</option></select></label>
-<label>Effort from<input id="minEffort" type="number" min="0" step="0.5" placeholder="Any"></label>
-<label>Effort to<input id="maxEffort" type="number" min="0" step="0.5" placeholder="Any"></label>
-<label>From<input id="from" type="date"></label><label>To<input id="to" type="date"></label>
+<section class="hero"><p class="eyebrow">TRAINING JOURNAL</p><h1>Your training, at a glance.</h1><p class="muted" id="updated"></p></section>
+<section id="empty" hidden class="empty"><h2>Your first workout starts here.</h2><p>Log a workout in chat with its location, exercise, equipment, weight, and reps.</p></section>
+<div id="home" hidden>
+<section class="summary-cards" aria-label="Training summary">
+<div class="summary-card"><strong id="totalWorkouts">0</strong><span>workouts</span></div>
+<div class="summary-card"><strong id="totalSets">0</strong><span>working sets</span></div>
+<div class="summary-card"><strong id="daysThisMonth">0</strong><span>days this month</span></div>
 </section>
-<section class="stats" aria-label="Matching records"><div><span id="sessions">0</span><p>Workouts</p></div><div><span id="setCount">0</span><p>Working sets</p></div><div><span id="latest">—</span><p>Latest session</p></div></section>
-<section class="panel"><div class="panel-heading"><h2 id="chartTitle">Best load per session</h2><span class="tag">WORKING SETS</span></div><p id="comparison" class="muted">Nominal load per limb. Equipment remains separate; matching labels do not establish equal resistance.</p><div id="chart" aria-live="polite"></div><div id="legend"></div></section>
-<section class="panel"><div class="panel-heading"><h2>Set history</h2><span class="muted">Original entries preserved</span></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Location / equipment</th><th>Recorded</th><th>Displayed</th><th>Reps</th><th>Effort</th><th>Side</th><th>Notes</th></tr></thead><tbody id="history"></tbody></table></div></section>
+<section class="panel recent-panel"><div class="section-heading"><div><p class="eyebrow">LATEST</p><h2>Most recent workout</h2></div><a class="text-link" href="calendar.html">View calendar →</a></div><div id="latestWorkout"></div></section>
+<section class="panel"><div class="section-heading"><div><p class="eyebrow">RECENT</p><h2>Training days</h2></div><a class="text-link" href="progress.html">Analyze progress →</a></div><div id="recentDays" class="day-list"></div></section>
 </div>
 <p id="error" role="alert" hidden></p>
-</main><footer>Machine weights are labels. Compare consistent equipment and similar reps and effort.</footer>
+</main>
+<footer>Machine weights are labels. Compare consistent equipment and similar reps and effort.</footer>
 </body></html>
