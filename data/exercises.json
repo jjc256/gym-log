@@ -3,5 +3,10 @@
     "id": "leg-press",
     "name": "Leg press",
     "aliases": []
+  },
+  {
+    "id": "hip-adduction",
+    "name": "Hip adduction",
+    "aliases": []
   }
 ]
