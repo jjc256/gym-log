@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const {normalized,rowsOf}=require('../site/app.js');
+const fixture=require('./fixtures/workout.json');
+const rows=rowsOf({workouts:[fixture]});
+assert.equal(rows.length,2);
+assert.deepEqual(rows.map(r=>normalized(r.load,r.unit,r.basis,r.limbs)),[20,20]);
+assert.notEqual(rows[0].key,rows[1].key);
+assert.equal(rows[0].key,'example-gym/dumbbells');
+assert.ok(Math.abs(normalized(20,'kg','combined',2)-22.046226218487757)<1e-10);
+console.log('Dashboard normalization and equipment identity checks passed.');
