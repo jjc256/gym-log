@@ -1,0 +1,55 @@
+{
+  "id": "0fecc633-f654-4c99-877b-a409cd182e63",
+  "date": "2026-09-09",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "leg-press",
+      "equipment": "leg-press-machine",
+      "load_basis": "combined",
+      "limbs_sharing_load": 2,
+      "sets": [
+        {
+          "id": "ac3a4d90-9a60-4afe-b218-e6940cd7c7d2",
+          "load": 100,
+          "unit": "lb",
+          "reps": 10,
+          "rpe": 3,
+          "side": "both"
+        },
+        {
+          "id": "642dc647-9230-4b9b-b65a-e0e356de4498",
+          "load": 160,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 3,
+          "side": "both"
+        },
+        {
+          "id": "072f8434-9ee6-4297-8386-6628786e433c",
+          "load": 115,
+          "unit": "lb",
+          "reps": 10,
+          "rpe": 3,
+          "side": "both"
+        },
+        {
+          "id": "3957be8e-2585-4e5f-b0ea-ee32905bc8f7",
+          "load": 160,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 3,
+          "side": "both"
+        },
+        {
+          "id": "d8bf912d-6d18-4591-838c-5e318d608bb5",
+          "load": 175,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1,
+          "side": "both"
+        }
+      ]
+    }
+  ]
+}
