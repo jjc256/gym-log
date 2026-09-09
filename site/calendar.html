@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gym log · Calendar</title>
+<meta name="description" content="Calendar of training days and workout details.">
+<link rel="stylesheet" href="style.css">
+<script defer src="data.js"></script><script defer src="app.js"></script>
+</head>
+<body data-page="calendar">
+<header class="site-header"><a class="brand" href="./">GYM<span> / </span>LOG</a><nav><a href="./">Home</a><a class="active" href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
+<main>
+<section class="hero"><p class="eyebrow">HISTORY</p><h1>Workout calendar</h1><p class="muted">Every day you trained, in one place.</p></section>
+<div id="calendarPage" hidden>
+<section class="calendar-toolbar"><button id="prevMonth" type="button" aria-label="Previous month">←</button><h2 id="monthLabel"></h2><button id="nextMonth" type="button" aria-label="Next month">→</button></section>
+<section id="calendar" class="calendar" aria-label="Workout calendar"></section>
+<section class="panel"><div class="section-heading"><div><p class="eyebrow">DAY</p><h2 id="dayTitle">Select a workout day</h2></div></div><div id="dayDetails" class="workout-detail"><p class="muted">Tap a highlighted day to see the workout.</p></div></section>
+</div>
+<section id="calendarEmpty" hidden class="empty"><h2>No workouts yet.</h2><p>Your workout days will appear here after you log them.</p></section>
+<p id="error" role="alert" hidden></p>
+</main>
+<footer>Training days are based on the date stored in each workout.</footer>
+</body></html>
