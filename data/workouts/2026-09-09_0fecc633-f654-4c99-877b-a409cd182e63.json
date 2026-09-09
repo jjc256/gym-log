@@ -50,6 +50,30 @@
           "side": "both"
         }
       ]
+    },
+    {
+      "exercise": "hip-adduction",
+      "equipment": "hip-adduction-machine",
+      "load_basis": "combined",
+      "limbs_sharing_load": 2,
+      "sets": [
+        {
+          "id": "8ec8a6ec-c34d-437c-adbf-68d3c55939bc",
+          "load": 70,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 10,
+          "side": "both"
+        },
+        {
+          "id": "af66b6ba-dfe0-4d1e-a87c-22ed79c5b465",
+          "load": 90,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1,
+          "side": "both"
+        }
+      ]
     }
   ]
 }
