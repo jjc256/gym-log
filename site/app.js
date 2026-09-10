@@ -168,11 +168,13 @@ function startRecords(data){
   $('recordUnit').addEventListener('change',render);render();
 }
 function drawStrengthGraph(days,unit){
-  const values=days.flatMap(day=>[day.estimate?.value,day.actualPR?.value]).filter(v=>v!==undefined);if(!values.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No estimates or one-rep sets recorded for these dates.';return empty;}
+  const values=days.flatMap(day=>[day.estimate?.value,day.actualPR?.value]).filter(v=>Number.isFinite(v));if(!values.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No estimates or one-rep sets recorded for these dates.';return empty;}
   const svg=svgElement('svg',{viewBox:'0 0 940 340'}),dates=days.map(d=>Date.parse(d.date+'T00:00:00Z')),min=Math.min(...dates),max=Math.max(...dates),axis=niceAxis(Math.max(...values));
   const x=day=>min===max?475:70+(Date.parse(day.date+'T00:00:00Z')-min)/(max-min)*810,y=value=>285-value/axis.top*240;
   let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimate){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimate.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
-  svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));return svg;
+  svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));
+  for(const day of days){if(day.estimate)svg.append(svgElement('circle',{cx:x(day),cy:y(day.estimate.value),r:5,fill:'#087e92'}));if(day.actualPR)svg.append(svgElement('circle',{cx:x(day),cy:y(day.actualPR.value),r:5,fill:'#555'}));}
+  return svg;
 }
 function renderStrengthCharts(groups,names,unit,from='',to=''){
   const root=$('strengthCharts');root.replaceChildren();let count=0;
