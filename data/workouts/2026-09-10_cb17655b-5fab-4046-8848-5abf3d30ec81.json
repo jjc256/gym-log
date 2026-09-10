@@ -21,6 +21,15 @@
       "sets": [
         {"id":"320186bb-9795-404a-9dfc-58672a4bcc5d","load":30,"unit":"lb","reps":10,"rir":2,"side":"n/a"}
       ]
+    },
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "dumbbell",
+      "sets": [
+        {"id":"52fe93aa-75d7-4a55-a0d3-1dd259284f4a","load":45,"unit":"lb","reps":8,"side":"n/a","kind":"warmup"},
+        {"id":"8adcc83c-63a9-47ac-8f31-5a95ca9e2954","load":55,"unit":"lb","reps":7,"rir":2,"side":"n/a"},
+        {"id":"8a65fe8b-dc4d-40e0-9832-b09250ac15ae","load":55,"unit":"lb","reps":7,"rir":1,"side":"n/a"}
+      ]
     }
   ]
 }
