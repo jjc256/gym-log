@@ -16,11 +16,11 @@
 <label>Load view<select id="recordMode"><option value="raw">As recorded</option><option value="normalized">Per limb where applicable</option></select></label>
 <label>Unit<select id="recordUnit"><option>lb</option><option>kg</option></select></label>
 </div>
-<p class="muted">Machines are separate by location and station. Free weights combine locations, keeping dumbbells and barbells separate. Sides and load conventions stay distinct.</p>
-<p id="recordsEmpty" class="empty" hidden>No workouts recorded yet.</p>
+<p class="muted">Machines are separate by location and station. Free weights combine locations, keeping dumbbells and barbells separate. Load conventions stay distinct.</p>
+<p id="recordsEmpty" class="empty" hidden>No eligible records yet.</p>
 <div id="recordsTable" class="table-wrap"><table>
 <caption>All-time one-rep maxes</caption>
-<thead><tr><th scope="col">Exercise</th><th scope="col">Equipment / location</th><th scope="col">Side / load</th><th scope="col">Highest implied 1RM</th><th scope="col">Actual 1RM</th></tr></thead><tbody id="recordsBody"></tbody>
+<thead><tr><th scope="col">Exercise</th><th scope="col">Equipment / location</th><th scope="col">Load</th><th scope="col">Highest implied 1RM</th><th scope="col">Actual 1RM</th></tr></thead><tbody id="recordsBody"></tbody>
 </table></div>
 <details class="strength-method"><summary>How these records are calculated</summary>
 <p>Each day's lowest-RIR working set supplies the implied 1RM. Ties use the higher estimate. Highest implied 1RM is the best of those daily estimates. Actual 1RM is the heaviest logged one-rep set, regardless of RIR.</p>

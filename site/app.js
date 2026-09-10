@@ -187,14 +187,14 @@ function appendRecordCell(tr, record, unit, estimated = false) {
 function startRecords(data) {
   const rows = rowsOf(data), names = maps(data);
   function render() {
-    const groups = strength.strengthSeries(rows, $('recordMode').value, $('recordUnit').value);
+    const groups = strength.recordSeries(rows, $('recordMode').value, $('recordUnit').value);
     $('recordsEmpty').hidden = groups.length > 0;$('recordsTable').hidden = !groups.length;
     const body = $('recordsBody');body.replaceChildren();
     for (const group of groups) {
       const tr = document.createElement('tr'), exercise = document.createElement('td'), link = document.createElement('a');
       link.href = `progress.html?exercise=${encodeURIComponent(group.row.exercise)}#one-rm`;
       link.textContent = names.exercises[group.row.exercise] || group.row.exercise;exercise.append(link);tr.append(exercise);
-      for (const text of [equipmentLabel(group.row, names), strengthLabel(group)]) {const td=document.createElement('td');td.textContent=text;tr.append(td);}
+      for (const text of [equipmentLabel(group.row, names), group.convention]) {const td=document.createElement('td');td.textContent=text;tr.append(td);}
       appendRecordCell(tr, group.bestEstimate, $('recordUnit').value, true);
       appendRecordCell(tr, group.actualPR, $('recordUnit').value);
       body.append(tr);

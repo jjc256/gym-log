@@ -104,3 +104,25 @@ assert.equal(units.bestEstimate.row.id,'kg');
 close(units.actualPR.value,20);
 assert.deepEqual(strengthSeries([]),[]);
 console.log('Daily RIR selection, actual PR timeline, equipment grouping, conventions, and units passed.');
+
+const {recordSeries}=require('../site/strength.js');
+const recordRows=[
+  set('left-single',{load:200,reps:1,rir:0}),
+  set('right-estimate',{side:'right',load:200,reps:8,rir:0}),
+  set('unknown',{side:undefined,load:300,reps:1,rir:0}),
+  set('bilateral-estimate',{side:'both',load:20,reps:8,rir:1}),
+  set('bilateral-single',{side:'both',load:25,reps:1,rir:undefined,date:'2026-09-02'})
+];
+for(const mode of ['raw','normalized']){
+  const records=recordSeries(recordRows,mode);
+  assert.equal(records.length,1);
+  assert.equal(records[0].bestEstimate.row.id,'bilateral-estimate');
+  assert.equal(records[0].actualPR.row.id,'bilateral-single');
+}
+assert.equal(recordSeries(recordRows.slice(0,3)).length,0);
+const wholeMovement=set('whole',{exercise:'abdominal-crunch',load_scope:'total',basis:'total',side:undefined,reps:1});
+assert.equal(recordSeries([wholeMovement])[0].actualPR.value,20);
+assert.equal(recordSeries([{...wholeMovement,side:'left'}]).length,0);
+// Keep unilateral history available on Progress.
+assert.ok(strengthSeries(recordRows).some(g=>g.row.side==='left'));
+console.log('Records exclude unilateral actual and implied maxes; whole-movement records remain.');

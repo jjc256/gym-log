@@ -66,6 +66,13 @@ function strengthSeries(rows, mode = 'raw', unit = 'lb') {
     return {...group, days, bestEstimate, actualPR};
   }).sort((a, b) => a.key.localeCompare(b.key));
 }
-const GymStrength = {converted, equipmentKey, loadConvention, comparisonKey, comparisonLoad, impliedOneRM, strengthSeries};
+function recordSeries(rows, mode = 'raw', unit = 'lb') {
+  // Show established bilateral performances and whole-movement loads only.
+  // Unknown limb participation is not evidence of a two-arm performance.
+  const eligible = rows.filter(row => !['left', 'right'].includes(row.side) &&
+    (row.side === 'both' || row.load_scope === 'total'));
+  return strengthSeries(eligible.map(row => ({...row, side: 'both'})), mode, unit);
+}
+const GymStrength = {converted, equipmentKey, loadConvention, comparisonKey, comparisonLoad, impliedOneRM, strengthSeries, recordSeries};
 if (typeof module !== 'undefined') module.exports = GymStrength;
 if (typeof window !== 'undefined') window.GymStrength = GymStrength;

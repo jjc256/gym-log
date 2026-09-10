@@ -74,7 +74,7 @@ The dashboard filters by exercise, location, equipment, date, rep range, effort 
 
 ### 1RM estimates and records
 
-Progress includes one chart per comparable exercise/equipment/side/load group. `records.html` shows each group's highest implied 1RM and actual 1RM, with dates and links to the source workouts. Both pages default to original load conventions; choose per-limb display for nominal comparisons where applicable. Total loads are never divided in the Records page's per-limb view.
+Progress includes one chart per comparable exercise/equipment/side/load group. `records.html` shows the highest implied 1RM and actual 1RM for bilateral performances and whole-movement loads, with dates and links to the source workouts. One-limb sets and limb-based sets with unspecified participation are excluded before calculating either record. Records labels omit the side; Progress retains side-specific histories. Both pages default to original load conventions; choose per-limb display for nominal comparisons where applicable. Total loads are never divided in the Records page's per-limb view.
 
 For each calendar date and comparable group (including multiple workouts that day):
 
