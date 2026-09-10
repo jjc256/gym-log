@@ -13,5 +13,10 @@
     "id": "leg-curl",
     "name": "Leg curl",
     "aliases": []
+  },
+  {
+    "id": "abdominal-crunch",
+    "name": "Abdominal crunch",
+    "aliases": ["abdominal crunches"]
   }
 ]
