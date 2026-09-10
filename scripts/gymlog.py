@@ -78,7 +78,9 @@ def validate_workout(w, exercises, locations):
             if 'rpe' in s:
                 require(number(s['rpe']) and 1 <= s['rpe'] <= 10, 'RPE must be between 1 and 10')
             require(s.get('side', 'n/a') in ('left', 'right', 'n/a'), 'Side must be left, right, or n/a')
-            require(s.get('kind', 'working') in ('working', 'warmup', 'drop'), 'Invalid kind')
+            kind = s.get('kind', 'working')
+            require(kind in ('working', 'warmup', 'drop'), 'Invalid kind')
+            require(not (kind == 'warmup' and ('rir' in s or 'rpe' in s)), 'Warmup sets must not record RIR or RPE')
             require(isinstance(s.get('notes', ''), str), 'Notes must be text')
     return w
 
