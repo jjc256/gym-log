@@ -15,7 +15,9 @@
           "unit": "lb",
           "reps": 10,
           "rpe": 3,
-          "side": "both"
+          "side": "both",
+          "kind": "warmup",
+          "notes": "fast twitch"
         },
         {
           "id": "642dc647-9230-4b9b-b65a-e0e356de4498",
@@ -31,7 +33,8 @@
           "unit": "lb",
           "reps": 10,
           "rpe": 3,
-          "side": "both"
+          "side": "both",
+          "notes": "fast twitch"
         },
         {
           "id": "3957be8e-2585-4e5f-b0ea-ee32905bc8f7",
@@ -63,7 +66,8 @@
           "unit": "lb",
           "reps": 10,
           "rir": 10,
-          "side": "both"
+          "side": "both",
+          "kind": "warmup"
         },
         {
           "id": "af66b6ba-dfe0-4d1e-a87c-22ed79c5b465",
@@ -87,7 +91,8 @@
           "unit": "lb",
           "reps": 10,
           "rir": 3,
-          "side": "both"
+          "side": "both",
+          "kind": "warmup"
         },
         {
           "id": "c75caaf5-087c-4c0e-8f31-2e595cb4e095",
@@ -119,7 +124,8 @@
           "unit": "lb",
           "reps": 15,
           "rir": 5,
-          "side": "both"
+          "side": "both",
+          "kind": "warmup"
         },
         {
           "id": "e5ea16f0-2db1-4390-bb59-c720c2311394",
