@@ -4,5 +4,6 @@
   {"id":"leg-curl","name":"Leg curl","aliases":[]},
   {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]},
   {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]},
-  {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]}
+  {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]},
+  {"id":"incline-bench-press","name":"Incline bench press","aliases":["incline dumbbell bench press","incline db bench"]}
 ]
