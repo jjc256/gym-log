@@ -8,7 +8,7 @@
       {"id":"curl-left-1","load":20,"unit":"lb","reps":10,"rir":2,"side":"left"}
     ]},
     {"exercise":"preacher-curl","equipment":"preacher-machine","sets":[
-      {"id":"curl-machine-1","load":40,"unit":"lb","reps":10,"rpe":8,"side":"both"}
+      {"id":"curl-machine-1","load":40,"unit":"lb","reps":10,"rpe":8,"side":"n/a"}
     ]}
   ]
 }
