@@ -6,11 +6,11 @@ const fixture=require('./fixtures/workout.json');
 const rows=rowsOf({workouts:[fixture]});
 assert.equal(rows.length,2);
 assert.equal(rows[0].side,'left');
-assert.equal(rows[1].side,'both');
+assert.equal(rows[1].side,'n/a');
 assert.equal(converted(20,'kg','lb').toFixed(6),'44.092452');
 assert.equal(comparisonLoad(rows[0],'lb'),20);
 
-const base={id:'a',workout:'w-a',date:'2026-09-01',location:'gym-a',exercise:'curl',equipment:'machine-a',side:'both',load:100,unit:'lb',reps:8,rir:2};
+const base={id:'a',workout:'w-a',date:'2026-09-01',location:'gym-a',exercise:'curl',equipment:'machine-a',side:'n/a',load:100,unit:'lb',reps:8,rir:2};
 assert.equal(comparisonKey({...base,side:undefined}),comparisonKey(base));
 assert.notEqual(comparisonKey({...base,side:'left'}),comparisonKey(base));
 assert.notEqual(comparisonKey({...base,location:'gym-b'}),comparisonKey(base));
@@ -26,7 +26,7 @@ let groups=strengthSeries([
   {...base,id:'e',workout:'w-e',side:'left',load:999}
 ]);
 assert.equal(groups.length,4);
-const same=groups.find(g=>g.row.location==='gym-a'&&g.row.equipment==='machine-a'&&g.row.side==='both');
+const same=groups.find(g=>g.row.location==='gym-a'&&g.row.equipment==='machine-a'&&g.row.side==='n/a');
 assert.equal(same.days.length,2);
 
 assert.equal(recordSeries([{...base,reps:1,rir:undefined},{...base,id:'l',workout:'wl',side:'left',reps:1,rir:undefined}]).length,2);
