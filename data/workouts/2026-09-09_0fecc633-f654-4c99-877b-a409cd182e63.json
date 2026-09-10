@@ -106,6 +106,30 @@
           "side": "both"
         }
       ]
+    },
+    {
+      "exercise": "abdominal-crunch",
+      "equipment": "abdominal-crunch-machine",
+      "load_basis": "combined",
+      "limbs_sharing_load": 2,
+      "sets": [
+        {
+          "id": "04a79f70-25f6-4568-94ac-63d030b86a8a",
+          "load": 70,
+          "unit": "lb",
+          "reps": 15,
+          "rir": 5,
+          "side": "both"
+        },
+        {
+          "id": "e5ea16f0-2db1-4390-bb59-c720c2311394",
+          "load": 90,
+          "unit": "lb",
+          "reps": 14,
+          "rir": 2,
+          "side": "both"
+        }
+      ]
     }
   ]
 }
