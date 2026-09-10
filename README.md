@@ -35,7 +35,7 @@ Each workout is stored at `data/workouts/YYYY-MM-DD_ID.json`:
 }
 ```
 
-`side` may be `left`, `right`, or `both`. If omitted, it means `both`. In the UI, `both` is the ordinary unsuffixed case.
+`side` may be `left`, `right`, or `n/a`. If omitted, it means `n/a`. `n/a` means sidedness does not apply and is treated in the UI as the ordinary unsuffixed location/exercise/equipment case.
 
 Optional set fields are `rir`, `rpe`, `side`, `kind`, and `notes`. `kind` is `working`, `warmup`, or `drop`.
 
@@ -45,7 +45,7 @@ The only comparable identity is:
 
 `location + exercise + equipment + side`
 
-Different locations or equipment are never pooled, normalized, or converted into one another. The only numeric conversion is lb ↔ kg. Left and right stay separate. `both` is treated as the plain location/exercise/equipment case.
+Different locations or equipment are never pooled, normalized, or converted into one another. The only numeric conversion is lb ↔ kg. Left and right stay separate. `n/a` is treated as the plain location/exercise/equipment case.
 
 There is no `load_scope`, `load_basis`, `limbs_sharing_load`, or `equipment_type`.
 
