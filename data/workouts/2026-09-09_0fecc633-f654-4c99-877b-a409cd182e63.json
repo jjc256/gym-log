@@ -53,7 +53,7 @@
     },
     {
       "exercise": "hip-adduction",
-      "equipment": "hip-adduction-machine",
+      "equipment": "hip-adduction-abduction-machine",
       "load_basis": "combined",
       "limbs_sharing_load": 2,
       "sets": [
@@ -70,6 +70,38 @@
           "load": 90,
           "unit": "lb",
           "reps": 6,
+          "rir": 1,
+          "side": "both"
+        }
+      ]
+    },
+    {
+      "exercise": "leg-curl",
+      "equipment": "leg-curl-machine",
+      "load_basis": "combined",
+      "limbs_sharing_load": 2,
+      "sets": [
+        {
+          "id": "96da8dc9-5681-45d6-9977-f553a180c026",
+          "load": 100,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 3,
+          "side": "both"
+        },
+        {
+          "id": "c75caaf5-087c-4c0e-8f31-2e595cb4e095",
+          "load": 110,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 2,
+          "side": "both"
+        },
+        {
+          "id": "f78fb5ae-0761-485c-8f92-aa8ab83db67f",
+          "load": 120,
+          "unit": "lb",
+          "reps": 10,
           "rir": 1,
           "side": "both"
         }
