@@ -2,5 +2,6 @@
   {"id":"leg-press","name":"Leg press","aliases":[]},
   {"id":"hip-adduction","name":"Hip adduction","aliases":[]},
   {"id":"leg-curl","name":"Leg curl","aliases":[]},
-  {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]}
+  {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]},
+  {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]}
 ]
