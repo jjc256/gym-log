@@ -19,12 +19,13 @@ class GymLogTests(unittest.TestCase):
     def test_valid_fixture(self):
         self.validate()
 
-    def test_side_is_only_left_right_both(self):
-        for side in ('left','right','both'):
+    def test_side_is_only_left_right_na(self):
+        for side in ('left','right','n/a'):
             w=copy.deepcopy(self.workout);w['exercises'][0]['sets'][0]['side']=side;self.validate(w)
         w=copy.deepcopy(self.workout);del w['exercises'][0]['sets'][0]['side'];self.validate(w)
-        w=copy.deepcopy(self.workout);w['exercises'][0]['sets'][0]['side']='unspecified'
-        with self.assertRaises(ValueError):self.validate(w)
+        for invalid in ('both','unspecified'):
+            w=copy.deepcopy(self.workout);w['exercises'][0]['sets'][0]['side']=invalid
+            with self.assertRaises(ValueError):self.validate(w)
 
     def test_old_comparison_fields_are_rejected(self):
         for field,value in [('load_basis','combined'),('limbs_sharing_load',2),('equipment_type','machine')]:
