@@ -11,7 +11,7 @@ from gymlog import validate_workout, normalize, load_data, build, ROOT
 class GymLogTests(unittest.TestCase):
     def setUp(self):
         self.workout = json.loads((ROOT / 'tests/fixtures/workout.json').read_text())
-        self.exercises = {'preacher-curl': {}}
+        self.exercises = {'preacher-curl': {'load_scope': 'per_limb'}}
         self.locations = {'example-gym': {}}
 
     def validate(self, w=None):
@@ -61,17 +61,48 @@ class GymLogTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output=build(output=Path(directory))
             self.assertTrue((output/'index.html').exists())
+            self.assertTrue((output/'records.html').exists())
+            self.assertTrue((output/'strength.js').exists())
+            for page in ('index.html', 'calendar.html', 'progress.html', 'records.html'):
+                self.assertIn('strength.js', (output/page).read_text())
+                self.assertIn('records.html', (output/page).read_text())
             self.assertIn('window.GYM_DATA', (output/'data.js').read_text())
 
-    def test_changed_convention_rejected(self):
+    def test_changed_convention_allowed_on_same_machine(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);(root/'data/workouts').mkdir(parents=True)
-            for name,values in [('exercises',[{'id':'preacher-curl','name':'Preacher curl'}]),('locations',[{'id':'example-gym','name':'Example gym'}])]:
+            for name,values in [('exercises',[{'id':'preacher-curl','name':'Preacher curl','load_scope':'per_limb'}]),('locations',[{'id':'example-gym','name':'Example gym'}])]:
                 (root/f'data/{name}.json').write_text(json.dumps(values))
             for i in range(2):
                 w=copy.deepcopy(self.workout);w['id']=f'workout-{i}'
-                if i:w['exercises'][0].update(load_basis='combined',limbs_sharing_load=2)
+                if i:
+                    w['exercises'][1]['limbs_sharing_load']=1
+                    w['exercises'][1]['sets'][0]['side']='left'
                 (root/f'data/workouts/{w["date"]}_{w["id"]}.json').write_text(json.dumps(w))
-            with self.assertRaises(ValueError):load_data(root)
+            self.assertEqual(len(load_data(root)['workouts']), 2)
+
+    def test_total_exercise_rejects_per_limb_conventions(self):
+        self.exercises['preacher-curl']['load_scope'] = 'total'
+        with self.assertRaises(ValueError): self.validate()
+        for b in self.workout['exercises']:
+            b.update(load_basis='total', limbs_sharing_load=1)
+        self.validate()
+
+    def test_shared_load_matches_side(self):
+        b = self.workout['exercises'][1]
+        b['sets'][0]['side'] = 'left'
+        with self.assertRaises(ValueError): self.validate()
+        b['limbs_sharing_load'] = 1
+        self.validate()
+        self.assertEqual(normalize(40, 'lb', 'combined', 1), 40)
+        b.update(load_basis='per_limb')
+        b['sets'][0]['side'] = 'both'
+        self.validate()  # Independent arms with per-arm labels.
+
+    def test_equipment_type_is_explicit(self):
+        self.workout['exercises'][0]['equipment_type'] = 'unknown'
+        with self.assertRaises(ValueError): self.validate()
+        del self.workout['exercises'][0]['equipment_type']
+        with self.assertRaises(ValueError): self.validate()
 
 if __name__=='__main__':unittest.main()

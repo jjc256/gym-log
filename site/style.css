@@ -15,3 +15,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .skip-link{position:fixed;top:8px;left:8px;padding:8px;background:#fff;z-index:10;transform:translateY(-150%)}
 .skip-link:focus{transform:translateY(0)}
 @media(max-width:650px){.month-heading{gap:8px;flex-wrap:wrap;justify-content:center}.workout-card-head,.exercise-title,.section-heading{flex-wrap:wrap}.rhythm{gap:4px}}
+
+/* Strength records extend the existing plain document layout. */
+.records-controls{max-width:460px}
+.record-source{display:block;margin-top:4px;font-size:13px;font-weight:400;white-space:normal}
+.strength-method{margin-top:20px;font-size:14px;max-width:760px}
+.strength-method summary{cursor:pointer}
+caption{text-align:left;font-weight:600;margin:12px 0}
+@media(max-width:650px){.site-header{flex-wrap:wrap}.site-header nav{flex-wrap:wrap;gap:14px}.records-controls{grid-template-columns:1fr 1fr}}
+.strength-card{padding:18px 0;border-top:1px solid #e2e2e2}
+.strength-card h3{font-size:15px}
+.strength-card details{font-size:14px}
+.strength-card summary{cursor:pointer}
+.strength-legend{font-size:14px;color:#555;margin:8px 0}
+.strength-chart{overflow:auto}
+.strength-chart svg{display:block;width:100%;min-width:520px;height:auto}

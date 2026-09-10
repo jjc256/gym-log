@@ -40,12 +40,14 @@ def normalize(load, unit, basis, limbs, target_unit='lb'):
     return value
 
 
-def catalog(path):
+def catalog(path, exercise_catalog=False):
     items = json.loads(path.read_text())
     require(isinstance(items, list), f'{path}: expected a list')
     result = {}
     for item in items:
-        fields(item, ('id', 'name'), ('aliases',))
+        fields(item, ('id', 'name', 'load_scope') if exercise_catalog else ('id', 'name'), ('aliases',))
+        if exercise_catalog:
+            require(item['load_scope'] in ('per_limb', 'total'), 'Invalid exercise load_scope')
         slug(item['id'])
         require(isinstance(item['name'], str) and item['name'].strip(), 'Name required')
         require(item['id'] not in result, f'Duplicate ID: {item["id"]}')
@@ -65,13 +67,16 @@ def validate_workout(w, exercises, locations):
     require(isinstance(w.get('notes', ''), str), 'Notes must be text')
     set_ids = set()
     for block in w['exercises']:
-        fields(block, ('exercise', 'equipment', 'load_basis', 'limbs_sharing_load', 'sets'), ('notes',))
+        fields(block, ('exercise', 'equipment', 'equipment_type', 'load_basis', 'limbs_sharing_load', 'sets'), ('notes',))
         require(block['exercise'] in exercises, f'Unknown exercise: {block["exercise"]}')
         slug(block['equipment'])
+        require(block['equipment_type'] in ('machine', 'free_weight'), 'Invalid equipment_type')
         require(block['load_basis'] in ('per_limb', 'combined', 'total'), 'Invalid load_basis')
         limbs = block['limbs_sharing_load']
         require(type(limbs) is int and limbs in (1, 2), 'limbs_sharing_load must be 1 or 2')
-        require(limbs == (2 if block['load_basis'] == 'combined' else 1), 'Use combined/2, per_limb/1, or total/1')
+        require(block['load_basis'] == 'combined' or limbs == 1, 'Only combined loads may be shared by two limbs')
+        if exercises[block['exercise']]['load_scope'] == 'total':
+            require(block['load_basis'] == 'total', 'This exercise uses total load, not per-limb load')
         require(isinstance(block.get('notes', ''), str), 'Notes must be text')
         require(isinstance(block['sets'], list) and block['sets'], 'Exercise needs sets')
         for s in block['sets']:
@@ -87,14 +92,18 @@ def validate_workout(w, exercises, locations):
                 require(number(s['rir']) and s['rir'] >= 0, 'RIR must be nonnegative')
             if 'rpe' in s:
                 require(number(s['rpe']) and 1 <= s['rpe'] <= 10, 'RPE must be between 1 and 10')
-            require(s.get('side', 'both') in ('left', 'right', 'both', 'unspecified'), 'Invalid side')
+            side = s.get('side', 'unspecified')
+            require(side in ('left', 'right', 'both', 'unspecified'), 'Invalid side')
+            if block['load_basis'] == 'combined':
+                require(not (limbs == 2 and side in ('left', 'right')), 'One limb cannot share a load across two limbs')
+                require(not (limbs == 1 and side == 'both'), 'Both limbs require combined/2 or an independent per_limb load')
             require(s.get('kind', 'working') in ('working', 'warmup', 'drop'), 'Invalid kind')
             require(isinstance(s.get('notes', ''), str), 'Notes must be text')
     return w
 
 
 def load_data(root=ROOT):
-    exercises = catalog(root / 'data/exercises.json')
+    exercises = catalog(root / 'data/exercises.json', exercise_catalog=True)
     locations = catalog(root / 'data/locations.json')
     workouts, ids = [], set()
     for path in sorted((root / 'data/workouts').glob('*.json')):
@@ -106,13 +115,6 @@ def load_data(root=ROOT):
             workouts.append(w)
         except (ValueError, TypeError, KeyError) as exc:
             raise ValueError(f'{path.name}: {exc}') from exc
-    bases = {}
-    for w in workouts:
-        for b in w['exercises']:
-            key = (b['exercise'], w['location'], b['equipment'])
-            convention = (b['load_basis'], b['limbs_sharing_load'])
-            require(key not in bases or bases[key] == convention, f'Changed load convention for {key}')
-            bases[key] = convention
     return {'exercises': list(exercises.values()), 'locations': list(locations.values()),
             'workouts': sorted(workouts, key=lambda w: (w['date'], w['id']))}
 
@@ -125,8 +127,9 @@ def build(root=ROOT, output=None):
     # working on GitHub Pages without maintaining a second hard-coded page list.
     for source in (root / 'site').glob('*.html'):
         shutil.copyfile(source, output / source.name)
-    for filename in ('app.js', 'style.css'):
-        shutil.copyfile(root / 'site' / filename, output / filename)
+    for pattern in ('*.js', '*.css'):
+        for source in (root / 'site').glob(pattern):
+            shutil.copyfile(source, output / source.name)
     payload = json.dumps(data, ensure_ascii=True, separators=(',', ':')).replace('<', '\\u003c')
     (output / 'data.js').write_text(f'window.GYM_DATA = {payload};\n')
     (output / '.nojekyll').touch()
