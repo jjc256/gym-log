@@ -6,5 +6,7 @@
   {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]},
   {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]},
   {"id":"incline-bench-press","name":"Incline bench press","aliases":["incline dumbbell bench press","incline db bench"]},
-  {"id":"lateral-raise","name":"Lateral raise","aliases":["lateral raises","cable lateral raise","cable lateral raises"]}
+  {"id":"lateral-raise","name":"Lateral raise","aliases":["lateral raises","cable lateral raise","cable lateral raises"]},
+  {"id":"pull-up","name":"Pull-up","aliases":["pull ups","pull-ups"]},
+  {"id":"chest-press","name":"Chest press","aliases":["chest press machine"]}
 ]
