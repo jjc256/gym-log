@@ -30,6 +30,18 @@
         {"id":"8adcc83c-63a9-47ac-8f31-5a95ca9e2954","load":55,"unit":"lb","reps":7,"rir":2,"side":"n/a"},
         {"id":"8a65fe8b-dc4d-40e0-9832-b09250ac15ae","load":55,"unit":"lb","reps":7,"rir":1,"side":"n/a"}
       ]
+    },
+    {
+      "exercise": "lateral-raise",
+      "equipment": "cable-machine",
+      "sets": [
+        {"id":"76cd7c7a-1755-4c64-9ceb-718c01dfca61","load":15,"unit":"lb","reps":12,"rir":3,"side":"left"},
+        {"id":"e6252404-23f3-4b3b-bd6c-c5a7305ba3af","load":15,"unit":"lb","reps":12,"rir":3,"side":"right"},
+        {"id":"259a8d9d-c66e-47f9-b4e4-76786ad43496","load":20,"unit":"lb","reps":10,"rir":5,"side":"left"},
+        {"id":"e23e3e68-ff56-488d-9089-27f7d4e9f6af","load":20,"unit":"lb","reps":10,"rir":3,"side":"right"},
+        {"id":"d99c507c-d450-4098-8458-56e7eb369130","load":20,"unit":"lb","reps":10,"rir":2,"side":"right"},
+        {"id":"cefba1fa-ee28-4ed8-b95f-1fae3536c98c","load":20,"unit":"lb","reps":12,"rir":3,"side":"left"}
+      ]
     }
   ]
 }
