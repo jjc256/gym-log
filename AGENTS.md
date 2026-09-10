@@ -5,17 +5,19 @@ This repository is a personal gym log. Prefer the simplest representation that p
 ## Data rules
 
 - Reuse canonical exercise and location IDs from `data/exercises.json` and `data/locations.json`.
-- An exercise block contains only `exercise`, `equipment`, `sets`, and optional `notes`.
-- A set contains `id`, `load`, `unit`, `reps`, plus optional `rir`, `rpe`, `side`, `kind`, and `notes`.
-- `side` is only `left`, `right`, or `n/a`; omitted means `n/a`.
-- `n/a` means sidedness does not apply. In user-facing labels, omit the side when it is `n/a`.
+- An exercise block contains `exercise`, `sets`, optional `equipment`, and optional `notes`.
+- A set contains `id` and `reps`, plus optional `load` + `unit`, `rir`, `rpe`, `side`, `kind`, and `notes`.
+- Omit fields whose value is effectively `n/a` when the schema allows it. Tables may render missing values as `n/a`, but non-table UI should not show literal `n/a`.
+- `load` and `unit` are recorded together or both omitted. Omit them for movements where external load is not applicable or not recorded, such as unweighted pull-ups.
+- `side` is only `left` or `right` when explicitly applicable; omitted means sidedness does not apply.
 - Never invent or infer left/right work that was not stated.
 - `kind` defaults to `working`; warmups should be stored explicitly when known.
+- Warmup sets do not record RIR or RPE.
 - Do not add load normalization metadata. There is no `load_scope`, `load_basis`, `limbs_sharing_load`, or `equipment_type`.
 
 ## Comparison rule
 
-Progress and records are scoped to the exact tuple `(location, exercise, equipment, side)`. Never pool or compare across locations or equipment. Only convert lb and kg.
+Progress and records are scoped to the exact tuple `(location, exercise, equipment, side)`, with omitted equipment/side treated as not applicable. Never pool or compare across locations or distinct equipment. Only convert lb and kg.
 
 ## Safety / integrity
 
