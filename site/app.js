@@ -11,7 +11,7 @@ function rowsOf(data) {
     workout:w.id,
     location:w.location,
     exercise:b.exercise,
-    equipment:b.equipment,
+    equipment:b.equipment || 'n/a',
     notes:[w.notes,b.notes,s.notes].filter(Boolean).join(' · ')
   }))));
 }
@@ -23,17 +23,19 @@ function effortText(s){if((s.kind||'working')==='warmup')return'—';return s.ri
 function tableEffortText(s){return (s.kind||'working')==='warmup'?'n/a':effortText(s);}
 function sideLabel(side){return !side||side==='n/a'?'':side;}
 function prettyDate(date){return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
+function setLoadText(s){return s.load===undefined?`${s.reps} reps`:`${s.load} ${s.unit} × ${s.reps}`;}
 function exerciseSummary(block,names){
   const wrap=document.createElement('div');wrap.className='exercise-block';
   const head=document.createElement('div');head.className='exercise-title';
   const h=document.createElement('h3');h.textContent=names.exercises[block.exercise]||block.exercise;
-  const eq=document.createElement('span');eq.className='muted';eq.textContent=block.equipment;
-  head.append(h,eq);wrap.append(head);
+  head.append(h);
+  if(block.equipment){const eq=document.createElement('span');eq.className='muted';eq.textContent=block.equipment;head.append(eq);}
+  wrap.append(head);
   const sets=document.createElement('div');sets.className='set-chips';
   for(const s of block.sets){
     const chip=document.createElement('span');chip.className='set-chip';
     const kind=s.kind||'working';if(kind==='warmup')chip.classList.add('warmup');
-    chip.textContent=`${s.load} ${s.unit} × ${s.reps}${sideLabel(s.side)?' · '+sideLabel(s.side):''}${effortText(s)==='—'?'':' · '+effortText(s)}${kind==='warmup'?' · Warm-up':kind==='drop'?' · Drop':''}`;
+    chip.textContent=`${setLoadText(s)}${sideLabel(s.side)?' · '+sideLabel(s.side):''}${effortText(s)==='—'?'':' · '+effortText(s)}${kind==='warmup'?' · Warm-up':kind==='drop'?' · Drop':''}`;
     sets.append(chip);
   }
   wrap.append(sets);return wrap;
@@ -114,10 +116,10 @@ function niceAxis(maximum){
   const step=[1,2,2.5,5,10].find(n=>n*magnitude>=rough)*magnitude,count=Math.ceil(limit/step);
   const ticks=Array.from({length:count+1},(_,i)=>Number((i*step).toPrecision(12)));return{top:ticks.at(-1),ticks};
 }
-function exactLabel(row,names){return `${names.locations[row.location]||row.location} / ${row.equipment}`;}
+function exactLabel(row,names,table=false){const loc=names.locations[row.location]||row.location;if(!row.equipment||row.equipment==='n/a')return table?`${loc} / n/a`:loc;return `${loc} / ${row.equipment}`;}
 function drawChart(rows,valueOf,unit){
-  $('chart').replaceChildren();$('legend').replaceChildren();if(!rows.length){$('chart').textContent='No sets match these filters.';return;}
-  const groups=new Map();for(const r of rows){const side=strength.sideOf(r);if(!groups.has(side))groups.set(side,new Map());const prev=groups.get(side).get(r.workout);if(!prev||valueOf(r)>valueOf(prev))groups.get(side).set(r.workout,r);}
+  $('chart').replaceChildren();$('legend').replaceChildren();const chartRows=rows.filter(r=>Number.isFinite(valueOf(r)));if(!chartRows.length){$('chart').textContent='No load recorded for matching sets.';return;}
+  const groups=new Map();for(const r of chartRows){const side=strength.sideOf(r);if(!groups.has(side))groups.set(side,new Map());const prev=groups.get(side).get(r.workout);if(!prev||valueOf(r)>valueOf(prev))groups.get(side).set(r.workout,r);}
   const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),axis=niceAxis(Math.max(0,...all.map(valueOf))),top=axis.top;
   const x=r=>min===max?475:70+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*810,y=r=>285-valueOf(r)/top*240,svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Best load per session in ${unit}.`});
   for(const tick of axis.ticks){const yy=285-tick/top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
@@ -129,7 +131,7 @@ function startProgress(data){
   options('exercise',data.exercises.filter(e=>all.some(r=>r.exercise===e.id)).map(e=>[e.id,e.name]));
   const requested=new URLSearchParams(window.location.search).get('exercise');if([...$('exercise').options].some(o=>o.value===requested))$('exercise').value=requested;
   function locationOptions(){const subset=all.filter(r=>r.exercise===$('exercise').value),ids=[...new Set(subset.map(r=>r.location))];options('location',ids.map(id=>[id,names.locations[id]||id]));}
-  function equipmentOptions(){const subset=all.filter(r=>r.exercise===$('exercise').value&&r.location===$('location').value),ids=[...new Set(subset.map(r=>r.equipment))];options('equipment',ids.map(id=>[id,id]));}
+  function equipmentOptions(){const subset=all.filter(r=>r.exercise===$('exercise').value&&r.location===$('location').value),ids=[...new Set(subset.map(r=>r.equipment))];options('equipment',ids.map(id=>[id,id==='n/a'?'No equipment':id]));}
   function render(){
     const unit=$('unit').value,valueOf=r=>strength.comparisonLoad(r,unit);
     const matching=all.filter(r=>r.exercise===$('exercise').value&&r.location===$('location').value&&r.equipment===$('equipment').value);
@@ -138,7 +140,7 @@ function startProgress(data){
     $('minEffort').disabled=$('maxEffort').disabled=$('effort').value==='all';$('sessions').textContent=new Set(rows.map(r=>r.workout)).size;$('setCount').textContent=rows.length;$('latest').textContent=rows.length?rows.map(r=>r.date).sort().at(-1):'—';
     $('chartTitle').textContent=`Best load per session (${unit})`;drawChart(rows,valueOf,unit);
     renderStrengthCharts(strength.strengthSeries(matching,unit),names,unit,$('from').value,$('to').value);
-    const body=$('history');body.replaceChildren();for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,exactLabel(r,names),r.kind||'working',`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,tableEffortText(r),sideLabel(r.side),r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
+    const body=$('history');body.replaceChildren();for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');const load=valueOf(r);for(const value of [r.date,exactLabel(r,names,true),r.kind||'working',Number.isFinite(load)?`${Number(load.toFixed(2))} ${unit}`:'n/a',r.reps,tableEffortText(r),sideLabel(r.side)||'n/a',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
   }
   $('resetFilters').addEventListener('click',()=>{for(const id of ['from','to','maxReps','minEffort','maxEffort'])$(id).value='';$('minReps').value='1';$('effort').value='all';$('includeWarmups').checked=true;$('unit').value='lb';render();});
   locationOptions();equipmentOptions();
@@ -157,10 +159,10 @@ function appendRecordCell(tr,record,unit,estimated=false){
 function startRecords(data){
   const rows=rowsOf(data),names=maps(data);
   function render(){
-    const groups=strength.recordSeries(rows,$('recordUnit').value);$('recordsEmpty').hidden=groups.length>0;$('recordsTable').hidden=!groups.length;
+    const groups=strength.recordSeries(rows,$('recordUnit').value).filter(group=>group.bestEstimate||group.actualPR);$('recordsEmpty').hidden=groups.length>0;$('recordsTable').hidden=!groups.length;
     const body=$('recordsBody');body.replaceChildren();
     for(const group of groups){const tr=document.createElement('tr'),exercise=document.createElement('td'),link=document.createElement('a');link.href=`progress.html?exercise=${encodeURIComponent(group.row.exercise)}#one-rm`;link.textContent=names.exercises[group.row.exercise]||group.row.exercise;exercise.append(link);tr.append(exercise);
-      for(const text of [exactLabel(group.row,names),sideLabel(group.row.side)]){const td=document.createElement('td');td.textContent=text;tr.append(td);}
+      for(const text of [exactLabel(group.row,names,true),sideLabel(group.row.side)||'n/a']){const td=document.createElement('td');td.textContent=text;tr.append(td);}
       appendRecordCell(tr,group.bestEstimate,$('recordUnit').value,true);appendRecordCell(tr,group.actualPR,$('recordUnit').value);body.append(tr);}
   }
   $('recordUnit').addEventListener('change',render);render();
@@ -174,10 +176,10 @@ function drawStrengthGraph(days,unit){
 }
 function renderStrengthCharts(groups,names,unit,from='',to=''){
   const root=$('strengthCharts');root.replaceChildren();let count=0;
-  for(const group of groups){const days=group.days.filter(day=>(!from||day.date>=from)&&(!to||day.date<=to));if(!days.length)continue;count++;
+  for(const group of groups){const days=group.days.filter(day=>(!from||day.date>=from)&&(!to||day.date<=to));if(!days.some(day=>day.estimate||day.actualPR))continue;count++;
     const card=document.createElement('article');card.className='strength-card';const title=document.createElement('h3');title.textContent=[exactLabel(group.row,names),sideLabel(group.row.side)].filter(Boolean).join(' · ');card.append(title);
     const chart=document.createElement('div');chart.className='strength-chart';chart.append(drawStrengthGraph(days,unit));card.append(chart);root.append(card);}
-  if(!count)root.textContent='No workouts match these dates.';
+  if(!count)root.textContent='No load-based strength data for these dates.';
 }
 function start(){const data=window.GYM_DATA;if(!data)throw new Error('Workout data could not be loaded.');const page=document.body.dataset.page;if(page==='home')startHome(data);else if(page==='calendar')startCalendar(data);else if(page==='progress')startProgress(data);else if(page==='records')startRecords(data);}
 if(typeof module!=='undefined')module.exports={rowsOf,weeklyActivity,niceAxis};
