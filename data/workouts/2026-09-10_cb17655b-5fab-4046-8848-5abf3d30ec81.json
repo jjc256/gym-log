@@ -14,6 +14,13 @@
         {"id":"a4734705-2124-4f4e-b732-84458cfb789a","load":25,"unit":"lb","reps":6,"rir":1,"side":"left"},
         {"id":"13abe694-612a-4b8d-b1ec-17e5922143ba","load":25,"unit":"lb","reps":6,"rir":1,"side":"right"}
       ]
+    },
+    {
+      "exercise": "hammer-curl",
+      "equipment": "dumbbell",
+      "sets": [
+        {"id":"320186bb-9795-404a-9dfc-58672a4bcc5d","load":30,"unit":"lb","reps":10,"rir":2,"side":"n/a"}
+      ]
     }
   ]
 }
