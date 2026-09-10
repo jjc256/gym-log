@@ -7,8 +7,8 @@
       "exercise": "preacher-curl",
       "equipment": "dumbbell",
       "sets": [
-        {"id":"039bd8bf-5a75-4396-8e49-9a4bf0d34a14","load":20,"unit":"lb","reps":10,"rir":2,"side":"left","kind":"warmup"},
-        {"id":"95ccbfb9-1743-4754-a993-dd38364cabb1","load":20,"unit":"lb","reps":10,"rir":2,"side":"right","kind":"warmup"},
+        {"id":"039bd8bf-5a75-4396-8e49-9a4bf0d34a14","load":20,"unit":"lb","reps":10,"side":"left","kind":"warmup"},
+        {"id":"95ccbfb9-1743-4754-a993-dd38364cabb1","load":20,"unit":"lb","reps":10,"side":"right","kind":"warmup"},
         {"id":"9c426a35-608a-45e7-bbd6-edd580834ce4","load":25,"unit":"lb","reps":6,"rir":1,"side":"left"},
         {"id":"cefa0230-fd9a-4a61-924d-39ae45d8d3b0","load":25,"unit":"lb","reps":6,"rir":1,"side":"right"},
         {"id":"a4734705-2124-4f4e-b732-84458cfb789a","load":25,"unit":"lb","reps":6,"rir":1,"side":"left"},
