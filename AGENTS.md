@@ -5,9 +5,11 @@ Read README.md and data/ before recording workouts. The JSON files are the sourc
 ## Resolve the entry
 - Store location once per workout; infer equipment identity as `<location>/<equipment>`.
 - Progress series is `(exercise, location, equipment)`. Do not track adjustable settings.
-- Reuse canonical IDs and aliases from data/exercises.json and data/locations.json. Reuse equipment slugs from existing workouts. Clarify ambiguous location, equipment, units, or whether a machine label is combined/per-arm; do not guess. Distinguish duplicate stations by a stable equipment name.
+- Reuse canonical IDs and aliases from data/exercises.json and data/locations.json. Reuse equipment slugs from existing workouts. Clarify ambiguous location, equipment, units, or genuinely ambiguous load conventions. Distinguish duplicate stations by a stable equipment name.
+- Default ordinary bilateral selectorized/plate-loaded machines to `load_basis: combined`, `limbs_sharing_load: 2` when the displayed number is conventionally the machine's single shared load. Do not ask for confirmation just because two limbs are involved.
+- Only clarify combined-vs-per-limb when the exercise/equipment is genuinely ambiguous, such as curl variations, independent-arm machines, unilateral stations, or equipment with separate per-side labels.
 - Dumbbell loads are per dumbbell/per limb, including two dumbbells moved simultaneously: `load_basis: per_limb`, `limbs_sharing_load: 1`.
-- A combined two-arm machine load uses `combined`, `2` only when established. A 40 lb combined curl displays as 20 lb per limb. Equipment with independent per-arm labels uses `per_limb`, `1`.
+- Equipment with independent per-arm/per-leg labels uses `per_limb`, `1`.
 - General total loads use `total`, `1`; these are displayed separately from per-limb comparisons. Do not record assistance as resistance; assistance is outside this initial schema.
 - Record each set's original load and unit. Never replace them with normalized values. Copy the existing series load convention into each block. Never silently change it historically.
 - Record side if specified; use `unspecified` if unknown. Do not duplicate a one-arm set into the other arm. For explicitly stated sets on each arm, record separate left/right sets.
