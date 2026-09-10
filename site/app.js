@@ -24,7 +24,13 @@ function exerciseSummary(block,names){
   const eq=document.createElement('span');eq.className='muted';eq.textContent=block.equipment;
   head.append(h,eq);wrap.append(head);
   const sets=document.createElement('div');sets.className='set-chips';
-  for(const s of block.sets){const chip=document.createElement('span');chip.className='set-chip';chip.textContent=`${s.load} ${s.unit} × ${s.reps} · ${effortText(s)}`;sets.append(chip);}
+  for(const s of block.sets){
+    const chip=document.createElement('span');chip.className='set-chip';
+    const kind=s.kind||'working';
+    if(kind==='warmup')chip.classList.add('warmup');
+    chip.textContent=`${s.load} ${s.unit} × ${s.reps} · ${effortText(s)}${kind==='warmup'?' · Warm-up':kind==='drop'?' · Drop':''}`;
+    sets.append(chip);
+  }
   wrap.append(sets);return wrap;
 }
 function workoutCard(w,names,compact=false){
@@ -83,7 +89,7 @@ function options(id, entries, first) {
 }
 function svgElement(name, attrs={}, text) {const el=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [key,value] of Object.entries(attrs))el.setAttribute(key,String(value));if(text!==undefined)el.textContent=text;return el;}
 function drawChart(rows, valueOf, unit) {
-  $('chart').replaceChildren();$('legend').replaceChildren();if(!rows.length){$('chart').textContent='No working sets match these filters.';return;}
+  $('chart').replaceChildren();$('legend').replaceChildren();if(!rows.length){$('chart').textContent='No sets match these filters.';return;}
   const groups=new Map();for(const r of rows){const key=`${r.key} · ${r.side||'unspecified'}`;if(!groups.has(key))groups.set(key,new Map());const prev=groups.get(key).get(r.workout);if(!prev||valueOf(r)>valueOf(prev))groups.get(key).set(r.workout,r);}
   const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),top=Math.max(1,...all.map(valueOf))*1.15;
   const x=r=>min===max?475:70+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*810,y=r=>285-valueOf(r)/top*240;
@@ -96,8 +102,19 @@ function startProgress(data){
   const all=rowsOf(data), names=maps(data);$('progressEmpty').hidden=all.length>0;$('dashboard').hidden=!all.length;if(!all.length)return;
   options('exercise',data.exercises.filter(e=>all.some(r=>r.exercise===e.id)).map(e=>[e.id,e.name]));options('location',data.locations.map(l=>[l.id,l.name]),'All locations');
   function equipmentOptions(){const subset=all.filter(r=>r.exercise===$('exercise').value&&(!$('location').value||r.location===$('location').value));options('equipment',[...new Set(subset.map(r=>r.key))].map(k=>[k,k]),'All equipment');}
-  function render(){const mode=$('mode').value,unit=$('unit').value,valueOf=r=>normalized(r.load,r.unit,mode==='raw'?'total':r.basis,r.limbs,unit);const matching=all.filter(r=>r.exercise===$('exercise').value&&(!$('location').value||r.location===$('location').value)&&(!$('equipment').value||r.key===$('equipment').value));const rows=matching.filter(r=>(r.kind||'working')==='working'&&(mode==='raw'||(mode==='total'?r.basis==='total':r.basis!=='total'))&&r.reps>=Number($('minReps').value||1)&&(!$('maxReps').value||r.reps<=Number($('maxReps').value))&&(!$('from').value||r.date>=$('from').value)&&(!$('to').value||r.date<=$('to').value)&&($('effort').value==='all'||(r[$('effort').value]!==undefined&&(!$('minEffort').value||r[$('effort').value]>=Number($('minEffort').value))&&(!$('maxEffort').value||r[$('effort').value]<=Number($('maxEffort').value)))));$('minEffort').disabled=$('maxEffort').disabled=$('effort').value==='all';$('sessions').textContent=new Set(rows.map(r=>r.workout)).size;$('setCount').textContent=rows.length;$('latest').textContent=rows.length?rows.map(r=>r.date).sort().at(-1):'—';$('chartTitle').textContent=`Best ${mode==='normalized'?'per-limb ':mode==='total'?'total ':''}load per session (${unit})`;$('comparison').textContent=mode==='normalized'?'Nominal load per limb. Combined loads are divided by the recorded number of limbs; equipment remains separate.':mode==='total'?'Only entries recorded as total load are included.':'Original load conventions, converted only between lb and kg.';drawChart(rows,valueOf,unit);const body=$('history');body.replaceChildren();for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,`${r.load} ${r.unit} (${r.basis.replace('_',' ')})`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),r.side||'unspecified',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}}
-  equipmentOptions();function chooseMode(){const subset=all.filter(r=>r.exercise===$('exercise').value);$('mode').value=subset.every(r=>r.basis==='total')?'total':'normalized';}chooseMode();for(const el of document.querySelectorAll('select,input'))el.addEventListener('change',()=>{if(el.id==='exercise'||el.id==='location')equipmentOptions();if(el.id==='exercise')chooseMode();render();});render();
+  function render(){
+    const mode=$('mode').value,unit=$('unit').value,valueOf=r=>normalized(r.load,r.unit,mode==='raw'?'total':r.basis,r.limbs,unit);
+    const matching=all.filter(r=>r.exercise===$('exercise').value&&(!$('location').value||r.location===$('location').value)&&(!$('equipment').value||r.key===$('equipment').value));
+    const includeWarmups=$('includeWarmups').checked;
+    const rows=matching.filter(r=>((r.kind||'working')==='working'||(includeWarmups&&(r.kind||'working')==='warmup'))&&(mode==='raw'||(mode==='total'?r.basis==='total':r.basis!=='total'))&&r.reps>=Number($('minReps').value||1)&&(!$('maxReps').value||r.reps<=Number($('maxReps').value))&&(!$('from').value||r.date>=$('from').value)&&(!$('to').value||r.date<=$('to').value)&&($('effort').value==='all'||(r[$('effort').value]!==undefined&&(!$('minEffort').value||r[$('effort').value]>=Number($('minEffort').value))&&(!$('maxEffort').value||r[$('effort').value]<=Number($('maxEffort').value)))));
+    $('minEffort').disabled=$('maxEffort').disabled=$('effort').value==='all';$('sessions').textContent=new Set(rows.map(r=>r.workout)).size;$('setCount').textContent=rows.length;$('latest').textContent=rows.length?rows.map(r=>r.date).sort().at(-1):'—';
+    $('chartTitle').textContent=`Best ${mode==='normalized'?'per-limb ':mode==='total'?'total ':''}load per session (${unit})`;
+    $('comparison').textContent=(mode==='normalized'?'Nominal load per limb. Combined loads are divided by the recorded number of limbs; equipment remains separate.':mode==='total'?'Only entries recorded as total load are included.':'Original load conventions, converted only between lb and kg.')+(includeWarmups?' Warmups are included.':' Warmups are excluded.');
+    drawChart(rows,valueOf,unit);
+    const body=$('history');body.replaceChildren();
+    for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,r.kind||'working',`${r.load} ${r.unit} (${r.basis.replace('_',' ')})`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),r.side||'unspecified',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
+  }
+  equipmentOptions();function chooseMode(){$('mode').value='raw';}chooseMode();for(const el of document.querySelectorAll('select,input'))el.addEventListener('change',()=>{if(el.id==='exercise'||el.id==='location')equipmentOptions();if(el.id==='exercise')chooseMode();render();});render();
 }
 function start(){const data=window.GYM_DATA;if(!data)throw new Error('Workout data could not be loaded. Rebuild the dashboard and try again.');const page=document.body.dataset.page;if(page==='home')startHome(data);else if(page==='calendar')startCalendar(data);else if(page==='progress')startProgress(data);}
 if(typeof module!=='undefined')module.exports={normalized,rowsOf};
