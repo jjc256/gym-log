@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gym log · Progress</title>
+<title>Gym Log · Progress</title>
 <meta name="description" content="Analyze training progress by exercise, equipment, reps, and effort.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="app.js"></script>
 </head>
 <body data-page="progress">
-<header class="site-header"><a class="brand" href="./">GYM<span> / </span>LOG</a><nav><a href="./">Home</a><a href="calendar.html">Calendar</a><a class="active" href="progress.html">Progress</a></nav></header>
+<header class="site-header"><a class="brand" href="./">Gym Log</a><nav><a href="./">Home</a><a href="calendar.html">Calendar</a><a class="active" href="progress.html">Progress</a></nav></header>
 <main>
-<section class="hero"><p class="eyebrow">ANALYSIS</p><h1>Progress</h1><p class="muted">Compare like with like. Filters live here because this page is for analysis.</p></section>
-<section id="progressEmpty" hidden class="empty"><h2>No workouts yet.</h2><p>Progress charts will appear after you log training.</p></section>
+<section class="page-heading"><div><h1>Progress</h1><p class="muted">Compare the same exercise and equipment over time.</p></div></section>
+<section id="progressEmpty" hidden class="empty"><h2>No workouts yet</h2><p>Progress charts will appear after you log training.</p></section>
 <div id="dashboard" hidden>
 <section class="filter-panel"><details><summary>Filters</summary><div class="filters" aria-label="Progress filters">
 <label>Exercise<select id="exercise"></select></label>
@@ -27,10 +27,10 @@
 <label>From<input id="from" type="date"></label><label>To<input id="to" type="date"></label>
 </div></details></section>
 <section class="stats" aria-label="Matching records"><div><span id="sessions">0</span><p>Workouts</p></div><div><span id="setCount">0</span><p>Working sets</p></div><div><span id="latest">—</span><p>Latest session</p></div></section>
-<section class="panel"><div class="section-heading"><h2 id="chartTitle">Best load per session</h2><span class="tag">WORKING SETS</span></div><p id="comparison" class="muted"></p><div id="chart" aria-live="polite"></div><div id="legend"></div></section>
-<section class="panel"><div class="section-heading"><h2>Set history</h2><span class="muted">Original entries preserved</span></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Location / equipment</th><th>Recorded</th><th>Displayed</th><th>Reps</th><th>Effort</th><th>Side</th><th>Notes</th></tr></thead><tbody id="history"></tbody></table></div></section>
+<section class="section"><div class="section-heading"><h2 id="chartTitle">Best load per session</h2></div><p id="comparison" class="muted"></p><div id="chart" aria-live="polite"></div><div id="legend"></div></section>
+<section class="section"><div class="section-heading"><h2>Set history</h2></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Location / equipment</th><th>Recorded</th><th>Displayed</th><th>Reps</th><th>Effort</th><th>Side</th><th>Notes</th></tr></thead><tbody id="history"></tbody></table></div></section>
 </div>
 <p id="error" role="alert" hidden></p>
 </main>
-<footer>Machine weights are labels. Compare consistent equipment and similar reps and effort.</footer>
+<footer>Machine labels are only comparable on consistent equipment.</footer>
 </body></html>
