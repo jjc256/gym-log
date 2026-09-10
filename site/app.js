@@ -19,7 +19,8 @@ function maps(data){return {
   locations:Object.fromEntries(data.locations.map(x=>[x.id,x.name])),
   exercises:Object.fromEntries(data.exercises.map(x=>[x.id,x.name]))
 };}
-function effortText(s){if((s.kind||'working')==='warmup')return'n/a';return s.rir!==undefined?`${s.rir} RIR`:s.rpe!==undefined?`${s.rpe} RPE`:'—';}
+function effortText(s){if((s.kind||'working')==='warmup')return'—';return s.rir!==undefined?`${s.rir} RIR`:s.rpe!==undefined?`${s.rpe} RPE`:'—';}
+function tableEffortText(s){return (s.kind||'working')==='warmup'?'n/a':effortText(s);}
 function sideLabel(side){return !side||side==='n/a'?'':side;}
 function prettyDate(date){return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
 function exerciseSummary(block,names){
@@ -137,7 +138,7 @@ function startProgress(data){
     $('minEffort').disabled=$('maxEffort').disabled=$('effort').value==='all';$('sessions').textContent=new Set(rows.map(r=>r.workout)).size;$('setCount').textContent=rows.length;$('latest').textContent=rows.length?rows.map(r=>r.date).sort().at(-1):'—';
     $('chartTitle').textContent=`Best load per session (${unit})`;drawChart(rows,valueOf,unit);
     renderStrengthCharts(strength.strengthSeries(matching,unit),names,unit,$('from').value,$('to').value);
-    const body=$('history');body.replaceChildren();for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,exactLabel(r,names),r.kind||'working',`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),sideLabel(r.side),r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
+    const body=$('history');body.replaceChildren();for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,exactLabel(r,names),r.kind||'working',`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,tableEffortText(r),sideLabel(r.side),r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
   }
   $('resetFilters').addEventListener('click',()=>{for(const id of ['from','to','maxReps','minEffort','maxEffort'])$(id).value='';$('minReps').value='1';$('effort').value='all';$('includeWarmups').checked=true;$('unit').value='lb';render();});
   locationOptions();equipmentOptions();
