@@ -126,7 +126,7 @@ function drawChart(rows, valueOf, unit, mode = 'raw') {
   const svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Best matching load per session in ${unit}.`});
   for(const tick of axis.ticks){const yy=285-tick/top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
   svg.append(svgElement('text',{x:70,y:320,fill:'#65747d','font-size':14},new Date(min).toISOString().slice(0,10)));if(max!==min)svg.append(svgElement('text',{x:880,y:320,'text-anchor':'end',fill:'#65747d','font-size':14},new Date(max).toISOString().slice(0,10)));
-  let index=0;for(const [key,group] of groups){const displayKey=key.replace(/ · both$/,'');const color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points){const dot=svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color});dot.append(svgElement('title',{},`${r.date} · ${displayKey}: ${valueOf(r).toFixed(2)} ${unit} × ${r.reps}`));svg.append(dot);}const label=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;label.append(swatch,document.createTextNode(displayKey));$('legend').append(label);}$('chart').append(svg);
+  let index=0;for(const [key,group] of groups){const first=group.values().next().value;const displayKey=[first.key,sideLabel(first.side),strength.loadConvention(first,mode)].filter(Boolean).join(' · ');const color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points){const dot=svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color});dot.append(svgElement('title',{},`${r.date} · ${displayKey}: ${valueOf(r).toFixed(2)} ${unit} × ${r.reps}`));svg.append(dot);}const label=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;label.append(swatch,document.createTextNode(displayKey));$('legend').append(label);}$('chart').append(svg);
 }
 function startProgress(data){
   const all=rowsOf(data), names=maps(data);$('progressEmpty').hidden=all.length>0;$('dashboard').hidden=!all.length;if(!all.length)return;
@@ -146,7 +146,7 @@ function startProgress(data){
     const strengthRows = matching.filter(r => mode === 'raw' || (mode === 'total' ? r.basis === 'total' : r.load_scope === 'per_limb' && r.basis !== 'total'));
     renderStrengthCharts(strength.strengthSeries(strengthRows, mode, unit), names, unit, $('from').value, $('to').value);
     const body=$('history');body.replaceChildren();
-    for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,r.kind||'working',`${r.load} ${r.unit} (${strength.loadConvention(r)})`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),r.side==='both'?'':r.side||'unspecified',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
+    for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,r.kind||'working',`${r.load} ${r.unit} (${strength.loadConvention(r)})`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),sideLabel(r.side),r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
   }
   $('resetFilters').addEventListener('click',()=>{
     for(const id of ['location','equipment','from','to','maxReps','minEffort','maxEffort'])$(id).value='';
@@ -160,8 +160,11 @@ if(typeof module!=='undefined')module.exports={normalized,rowsOf,weeklyActivity,
 function equipmentLabel(row, names) {
   return row.equipment_type === 'free_weight' ? `${row.equipment} · all locations` : `${names.locations[row.location] || row.location} / ${row.equipment}`;
 }
+function sideLabel(side) {
+  return side === 'both' ? '' : side || 'unspecified';
+}
 function strengthLabel(group) {
-  return `${group.row.side || 'unspecified'} · ${group.convention}`;
+  return [sideLabel(group.row.side), group.convention].filter(Boolean).join(' · ');
 }
 function maxText(value, unit) { return value === null ? 'Not recorded' : `${Number(value.toFixed(1))} ${unit}`; }
 function sourceText(record, includeEffort = false) {
