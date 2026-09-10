@@ -8,5 +8,10 @@
     "id": "hip-adduction",
     "name": "Hip adduction",
     "aliases": []
+  },
+  {
+    "id": "leg-curl",
+    "name": "Leg curl",
+    "aliases": []
   }
 ]
