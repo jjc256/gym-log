@@ -6,19 +6,6 @@
 <meta name="description" content="Analyze training progress by exercise, equipment, reps, and effort.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="app.js"></script>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const mode = document.getElementById('mode');
-  const exercise = document.getElementById('exercise');
-  const useRecordedLoad = () => {
-    if (!mode || mode.value === 'raw') return;
-    mode.value = 'raw';
-    mode.dispatchEvent(new Event('change'));
-  };
-  useRecordedLoad();
-  if (exercise) exercise.addEventListener('change', useRecordedLoad);
-});
-</script>
 </head>
 <body data-page="progress">
 <header class="site-header"><a class="brand" href="./">Gym Log</a><nav><a href="./">Home</a><a href="calendar.html">Calendar</a><a class="active" href="progress.html">Progress</a></nav></header>
@@ -38,10 +25,11 @@ window.addEventListener('DOMContentLoaded', () => {
 <label>Effort from<input id="minEffort" type="number" min="0" step="0.5" placeholder="Any"></label>
 <label>Effort to<input id="maxEffort" type="number" min="0" step="0.5" placeholder="Any"></label>
 <label>From<input id="from" type="date"></label><label>To<input id="to" type="date"></label>
+<label class="check-label"><input id="includeWarmups" type="checkbox">Include warmups</label>
 </div></details></section>
-<section class="stats" aria-label="Matching records"><div><span id="sessions">0</span><p>Workouts</p></div><div><span id="setCount">0</span><p>Working sets</p></div><div><span id="latest">—</span><p>Latest session</p></div></section>
+<section class="stats" aria-label="Matching records"><div><span id="sessions">0</span><p>Workouts</p></div><div><span id="setCount">0</span><p>Sets shown</p></div><div><span id="latest">—</span><p>Latest session</p></div></section>
 <section class="section"><div class="section-heading"><h2 id="chartTitle">Best load per session</h2></div><p id="comparison" class="muted"></p><div id="chart" aria-live="polite"></div><div id="legend"></div></section>
-<section class="section"><div class="section-heading"><h2>Set history</h2></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Location / equipment</th><th>Recorded</th><th>Displayed</th><th>Reps</th><th>Effort</th><th>Side</th><th>Notes</th></tr></thead><tbody id="history"></tbody></table></div></section>
+<section class="section"><div class="section-heading"><h2>Set history</h2></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Location / equipment</th><th>Kind</th><th>Recorded</th><th>Displayed</th><th>Reps</th><th>Effort</th><th>Side</th><th>Notes</th></tr></thead><tbody id="history"></tbody></table></div></section>
 </div>
 <p id="error" role="alert" hidden></p>
 </main>
