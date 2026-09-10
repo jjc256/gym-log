@@ -5,5 +5,6 @@
   {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]},
   {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]},
   {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]},
-  {"id":"incline-bench-press","name":"Incline bench press","aliases":["incline dumbbell bench press","incline db bench"]}
+  {"id":"incline-bench-press","name":"Incline bench press","aliases":["incline dumbbell bench press","incline db bench"]},
+  {"id":"lateral-raise","name":"Lateral raise","aliases":["lateral raises","cable lateral raise","cable lateral raises"]}
 ]
