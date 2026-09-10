@@ -6,6 +6,19 @@
 <meta name="description" content="Analyze training progress by exercise, equipment, reps, and effort.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="app.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const mode = document.getElementById('mode');
+  const exercise = document.getElementById('exercise');
+  const useRecordedLoad = () => {
+    if (!mode || mode.value === 'raw') return;
+    mode.value = 'raw';
+    mode.dispatchEvent(new Event('change'));
+  };
+  useRecordedLoad();
+  if (exercise) exercise.addEventListener('change', useRecordedLoad);
+});
+</script>
 </head>
 <body data-page="progress">
 <header class="site-header"><a class="brand" href="./">Gym Log</a><nav><a href="./">Home</a><a href="calendar.html">Calendar</a><a class="active" href="progress.html">Progress</a></nav></header>
@@ -17,7 +30,7 @@
 <label>Exercise<select id="exercise"></select></label>
 <label>Location<select id="location"></select></label>
 <label>Equipment<select id="equipment"></select></label>
-<label>Display<select id="mode"><option value="normalized">Per limb</option><option value="raw">As recorded</option><option value="total">Total load</option></select></label>
+<label>Display<select id="mode"><option value="raw" selected>As recorded</option><option value="normalized">Per limb</option><option value="total">Total load</option></select></label>
 <label>Unit<select id="unit"><option>lb</option><option>kg</option></select></label>
 <label>Minimum reps<input id="minReps" type="number" min="1" value="1"></label>
 <label>Maximum reps<input id="maxReps" type="number" min="1" placeholder="Any"></label>
