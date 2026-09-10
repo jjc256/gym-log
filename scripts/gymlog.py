@@ -106,7 +106,6 @@ def load_data(root=ROOT):
             workouts.append(w)
         except (ValueError, TypeError, KeyError) as exc:
             raise ValueError(f'{path.name}: {exc}') from exc
-    # A series must retain its measurement basis; fixes require explicit historical review.
     bases = {}
     for w in workouts:
         for b in w['exercises']:
@@ -122,9 +121,12 @@ def build(root=ROOT, output=None):
     data = load_data(root)
     output = output or root / 'dist'
     output.mkdir(parents=True, exist_ok=True)
-    for filename in ('index.html', 'app.js', 'style.css'):
+    # Copy every authored page plus the shared assets. This keeps multi-page navigation
+    # working on GitHub Pages without maintaining a second hard-coded page list.
+    for source in (root / 'site').glob('*.html'):
+        shutil.copyfile(source, output / source.name)
+    for filename in ('app.js', 'style.css'):
         shutil.copyfile(root / 'site' / filename, output / filename)
-    # Script-safe JSON also lets the built dashboard open directly from disk.
     payload = json.dumps(data, ensure_ascii=True, separators=(',', ':')).replace('<', '\\u003c')
     (output / 'data.js').write_text(f'window.GYM_DATA = {payload};\n')
     (output / '.nojekyll').touch()
