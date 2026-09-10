@@ -7,36 +7,36 @@
       "exercise": "leg-press",
       "equipment": "leg-press-machine",
       "sets": [
-        {"id":"ac3a4d90-9a60-4afe-b218-e6940cd7c7d2","load":100,"unit":"lb","reps":10,"rpe":3,"side":"both","kind":"warmup","notes":"fast twitch"},
-        {"id":"642dc647-9230-4b9b-b65a-e0e356de4498","load":160,"unit":"lb","reps":6,"rir":3,"side":"both"},
-        {"id":"072f8434-9ee6-4297-8386-6628786e433c","load":115,"unit":"lb","reps":10,"rpe":3,"side":"both","notes":"fast twitch"},
-        {"id":"3957be8e-2585-4e5f-b0ea-ee32905bc8f7","load":160,"unit":"lb","reps":6,"rir":3,"side":"both"},
-        {"id":"d8bf912d-6d18-4591-838c-5e318d608bb5","load":175,"unit":"lb","reps":6,"rir":1,"side":"both"}
+        {"id":"ac3a4d90-9a60-4afe-b218-e6940cd7c7d2","load":100,"unit":"lb","reps":10,"rpe":3,"side":"n/a","kind":"warmup","notes":"fast twitch"},
+        {"id":"642dc647-9230-4b9b-b65a-e0e356de4498","load":160,"unit":"lb","reps":6,"rir":3,"side":"n/a"},
+        {"id":"072f8434-9ee6-4297-8386-6628786e433c","load":115,"unit":"lb","reps":10,"rpe":3,"side":"n/a","notes":"fast twitch"},
+        {"id":"3957be8e-2585-4e5f-b0ea-ee32905bc8f7","load":160,"unit":"lb","reps":6,"rir":3,"side":"n/a"},
+        {"id":"d8bf912d-6d18-4591-838c-5e318d608bb5","load":175,"unit":"lb","reps":6,"rir":1,"side":"n/a"}
       ]
     },
     {
       "exercise": "hip-adduction",
       "equipment": "hip-adduction-abduction-machine",
       "sets": [
-        {"id":"8ec8a6ec-c34d-437c-adbf-68d3c55939bc","load":70,"unit":"lb","reps":10,"rir":10,"side":"both","kind":"warmup"},
-        {"id":"af66b6ba-dfe0-4d1e-a87c-22ed79c5b465","load":90,"unit":"lb","reps":6,"rir":1,"side":"both"}
+        {"id":"8ec8a6ec-c34d-437c-adbf-68d3c55939bc","load":70,"unit":"lb","reps":10,"rir":10,"side":"n/a","kind":"warmup"},
+        {"id":"af66b6ba-dfe0-4d1e-a87c-22ed79c5b465","load":90,"unit":"lb","reps":6,"rir":1,"side":"n/a"}
       ]
     },
     {
       "exercise": "leg-curl",
       "equipment": "leg-curl-machine",
       "sets": [
-        {"id":"96da8dc9-5681-45d6-9977-f553a180c026","load":100,"unit":"lb","reps":10,"rir":3,"side":"both","kind":"warmup"},
-        {"id":"c75caaf5-087c-4c0e-8f31-2e595cb4e095","load":110,"unit":"lb","reps":10,"rir":2,"side":"both"},
-        {"id":"f78fb5ae-0761-485c-8f92-aa8ab83db67f","load":120,"unit":"lb","reps":10,"rir":1,"side":"both"}
+        {"id":"96da8dc9-5681-45d6-9977-f553a180c026","load":100,"unit":"lb","reps":10,"rir":3,"side":"n/a","kind":"warmup"},
+        {"id":"c75caaf5-087c-4c0e-8f31-2e595cb4e095","load":110,"unit":"lb","reps":10,"rir":2,"side":"n/a"},
+        {"id":"f78fb5ae-0761-485c-8f92-aa8ab83db67f","load":120,"unit":"lb","reps":10,"rir":1,"side":"n/a"}
       ]
     },
     {
       "exercise": "abdominal-crunch",
       "equipment": "abdominal-crunch-machine",
       "sets": [
-        {"id":"04a79f70-25f6-4568-94ac-63d030b86a8a","load":70,"unit":"lb","reps":15,"rir":5,"side":"both","kind":"warmup"},
-        {"id":"e5ea16f0-2db1-4390-bb59-c720c2311394","load":90,"unit":"lb","reps":14,"rir":2,"side":"both"}
+        {"id":"04a79f70-25f6-4568-94ac-63d030b86a8a","load":70,"unit":"lb","reps":15,"rir":5,"side":"n/a","kind":"warmup"},
+        {"id":"e5ea16f0-2db1-4390-bb59-c720c2311394","load":90,"unit":"lb","reps":14,"rir":2,"side":"n/a"}
       ]
     }
   ]
