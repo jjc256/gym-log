@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gym log</title>
-<meta name="description" content="Your training log, workout calendar, and progress.">
+<title>Gym Log</title>
+<meta name="description" content="Workout history, calendar, and progress.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="app.js"></script>
 </head>
 <body data-page="home">
-<header class="site-header"><a class="brand" href="./">GYM<span> / </span>LOG</a><nav><a class="active" href="./">Home</a><a href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
+<header class="site-header"><a class="brand" href="./">Gym Log</a><nav><a class="active" href="./">Home</a><a href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
 <main>
-<section class="hero"><p class="eyebrow">TRAINING JOURNAL</p><h1>Your training, at a glance.</h1><p class="muted" id="updated"></p></section>
-<section id="empty" hidden class="empty"><h2>Your first workout starts here.</h2><p>Log a workout in chat with its location, exercise, equipment, weight, and reps.</p></section>
+<section class="page-heading"><div><h1>Training</h1><p class="muted" id="updated"></p></div></section>
+<section id="empty" hidden class="empty"><h2>No workouts yet</h2><p>Log a workout in chat and it will appear here.</p></section>
 <div id="home" hidden>
 <section class="summary-cards" aria-label="Training summary">
-<div class="summary-card"><strong id="totalWorkouts">0</strong><span>workouts</span></div>
-<div class="summary-card"><strong id="totalSets">0</strong><span>working sets</span></div>
-<div class="summary-card"><strong id="daysThisMonth">0</strong><span>days this month</span></div>
+<div class="summary-card"><strong id="totalWorkouts">0</strong><span>Workouts</span></div>
+<div class="summary-card"><strong id="totalSets">0</strong><span>Working sets</span></div>
+<div class="summary-card"><strong id="daysThisMonth">0</strong><span>Days this month</span></div>
 </section>
-<section class="panel recent-panel"><div class="section-heading"><div><p class="eyebrow">LATEST</p><h2>Most recent workout</h2></div><a class="text-link" href="calendar.html">View calendar →</a></div><div id="latestWorkout"></div></section>
-<section class="panel"><div class="section-heading"><div><p class="eyebrow">RECENT</p><h2>Training days</h2></div><a class="text-link" href="progress.html">Analyze progress →</a></div><div id="recentDays" class="day-list"></div></section>
+<section class="section"><div class="section-heading"><h2>Latest workout</h2><a class="text-link" href="calendar.html">Calendar</a></div><div id="latestWorkout"></div></section>
+<section class="section"><div class="section-heading"><h2>Recent days</h2><a class="text-link" href="progress.html">Progress</a></div><div id="recentDays" class="day-list"></div></section>
 </div>
 <p id="error" role="alert" hidden></p>
 </main>
-<footer>Machine weights are labels. Compare consistent equipment and similar reps and effort.</footer>
+<footer>Machine labels are only comparable on consistent equipment.</footer>
 </body></html>
