@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gym Log · Records</title>
-<meta name="description" content="Highest implied and recorded one-rep maxes by exercise and equipment.">
+<meta name="description" content="Highest implied and recorded one-rep maxes by exact location, exercise, machine, and side.">
 <link rel="stylesheet" href="style.css">
 <script defer src="data.js"></script><script defer src="strength.js"></script><script defer src="app.js"></script>
 </head>
@@ -12,21 +12,17 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <main id="main">
 <section class="page-heading"><h1>Records</h1></section>
-<div class="filters primary-filters records-controls">
-<label>Load view<select id="recordMode"><option value="raw">As recorded</option><option value="normalized">Per limb where applicable</option></select></label>
-<label>Unit<select id="recordUnit"><option>lb</option><option>kg</option></select></label>
-</div>
-<p class="muted">Machines are separate by location and station. Free weights combine locations, keeping dumbbells and barbells separate. Load conventions stay distinct.</p>
-<p id="recordsEmpty" class="empty" hidden>No eligible records yet.</p>
+<div class="filters primary-filters records-controls"><label>Unit<select id="recordUnit"><option>lb</option><option>kg</option></select></label></div>
+<p class="muted">Records never merge different locations or machines. Left and right are separate. Both is displayed without a side label.</p>
+<p id="recordsEmpty" class="empty" hidden>No records yet.</p>
 <div id="recordsTable" class="table-wrap"><table>
 <caption>All-time one-rep maxes</caption>
-<thead><tr><th scope="col">Exercise</th><th scope="col">Equipment / location</th><th scope="col">Load</th><th scope="col">Highest implied 1RM</th><th scope="col">Actual 1RM</th></tr></thead><tbody id="recordsBody"></tbody>
+<thead><tr><th scope="col">Exercise</th><th scope="col">Location / machine</th><th scope="col">Side</th><th scope="col">Highest implied 1RM</th><th scope="col">Actual 1RM</th></tr></thead><tbody id="recordsBody"></tbody>
 </table></div>
 <details class="strength-method"><summary>How these records are calculated</summary>
-<p>Each day's lowest-RIR working set supplies the implied 1RM. Ties use the higher estimate. Highest implied 1RM is the best of those daily estimates. Actual 1RM is the heaviest logged one-rep set, regardless of RIR.</p>
-<p>Epley estimate: load × (1 + (reps + RIR) ÷ 30). One rep at zero RIR uses the lifted load. Missing RIR and RPE-only sets do not produce estimates. Estimates from more than 10 effective reps (reps + RIR) are marked as less certain. Machine figures use the recorded labels.</p>
+<p>Each exact location/exercise/machine/side tuple has its own record. Each day's lowest-RIR working set supplies the implied 1RM. Actual 1RM is the heaviest logged one-rep set.</p>
 </details>
 <p id="error" role="alert" hidden></p>
 </main>
-<footer>Machine labels are only comparable on consistent equipment.</footer>
+<footer>Only identical location and machine identities are comparable.</footer>
 </body></html>

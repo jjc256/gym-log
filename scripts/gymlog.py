@@ -32,22 +32,12 @@ def slug(value):
     require(isinstance(value, str) and SLUG.fullmatch(value), f'Invalid ID: {value!r}')
 
 
-def normalize(load, unit, basis, limbs, target_unit='lb'):
-    """Nominal per-limb/total load, NOT a machine-resistance conversion."""
-    value = load / (limbs if basis == 'combined' else 1)
-    if unit != target_unit:
-        value *= 2.2046226218487757 if unit == 'kg' else 1 / 2.2046226218487757
-    return value
-
-
-def catalog(path, exercise_catalog=False):
+def catalog(path):
     items = json.loads(path.read_text())
     require(isinstance(items, list), f'{path}: expected a list')
     result = {}
     for item in items:
-        fields(item, ('id', 'name', 'load_scope') if exercise_catalog else ('id', 'name'), ('aliases',))
-        if exercise_catalog:
-            require(item['load_scope'] in ('per_limb', 'total'), 'Invalid exercise load_scope')
+        fields(item, ('id', 'name'), ('aliases',))
         slug(item['id'])
         require(isinstance(item['name'], str) and item['name'].strip(), 'Name required')
         require(item['id'] not in result, f'Duplicate ID: {item["id"]}')
@@ -65,20 +55,15 @@ def validate_workout(w, exercises, locations):
     require(w['location'] in locations, f'Unknown location: {w["location"]}')
     require(isinstance(w['exercises'], list) and w['exercises'], 'Workout needs exercises')
     require(isinstance(w.get('notes', ''), str), 'Notes must be text')
+
     set_ids = set()
     for block in w['exercises']:
-        fields(block, ('exercise', 'equipment', 'equipment_type', 'load_basis', 'limbs_sharing_load', 'sets'), ('notes',))
+        fields(block, ('exercise', 'equipment', 'sets'), ('notes',))
         require(block['exercise'] in exercises, f'Unknown exercise: {block["exercise"]}')
         slug(block['equipment'])
-        require(block['equipment_type'] in ('machine', 'free_weight'), 'Invalid equipment_type')
-        require(block['load_basis'] in ('per_limb', 'combined', 'total'), 'Invalid load_basis')
-        limbs = block['limbs_sharing_load']
-        require(type(limbs) is int and limbs in (1, 2), 'limbs_sharing_load must be 1 or 2')
-        require(block['load_basis'] == 'combined' or limbs == 1, 'Only combined loads may be shared by two limbs')
-        if exercises[block['exercise']]['load_scope'] == 'total':
-            require(block['load_basis'] == 'total', 'This exercise uses total load, not per-limb load')
         require(isinstance(block.get('notes', ''), str), 'Notes must be text')
         require(isinstance(block['sets'], list) and block['sets'], 'Exercise needs sets')
+
         for s in block['sets']:
             fields(s, ('id', 'load', 'unit', 'reps'), ('rir', 'rpe', 'side', 'kind', 'notes'))
             slug(s['id'])
@@ -92,18 +77,14 @@ def validate_workout(w, exercises, locations):
                 require(number(s['rir']) and s['rir'] >= 0, 'RIR must be nonnegative')
             if 'rpe' in s:
                 require(number(s['rpe']) and 1 <= s['rpe'] <= 10, 'RPE must be between 1 and 10')
-            side = s.get('side', 'unspecified')
-            require(side in ('left', 'right', 'both', 'unspecified'), 'Invalid side')
-            if block['load_basis'] == 'combined':
-                require(not (limbs == 2 and side in ('left', 'right')), 'One limb cannot share a load across two limbs')
-                require(not (limbs == 1 and side == 'both'), 'Both limbs require combined/2 or an independent per_limb load')
+            require(s.get('side', 'both') in ('left', 'right', 'both'), 'Side must be left, right, or both')
             require(s.get('kind', 'working') in ('working', 'warmup', 'drop'), 'Invalid kind')
             require(isinstance(s.get('notes', ''), str), 'Notes must be text')
     return w
 
 
 def load_data(root=ROOT):
-    exercises = catalog(root / 'data/exercises.json', exercise_catalog=True)
+    exercises = catalog(root / 'data/exercises.json')
     locations = catalog(root / 'data/locations.json')
     workouts, ids = [], set()
     for path in sorted((root / 'data/workouts').glob('*.json')):
@@ -123,8 +104,6 @@ def build(root=ROOT, output=None):
     data = load_data(root)
     output = output or root / 'dist'
     output.mkdir(parents=True, exist_ok=True)
-    # Copy every authored page plus the shared assets. This keeps multi-page navigation
-    # working on GitHub Pages without maintaining a second hard-coded page list.
     for source in (root / 'site').glob('*.html'):
         shutil.copyfile(source, output / source.name)
     for pattern in ('*.js', '*.css'):

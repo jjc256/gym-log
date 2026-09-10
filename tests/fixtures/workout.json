@@ -1,42 +1,14 @@
 {
-  "id": "example-workout",
-  "date": "2026-09-09",
-  "location": "example-gym",
-  "notes": "Synthetic test data, not a real workout.",
-  "exercises": [
-    {
-      "exercise": "preacher-curl",
-      "equipment": "dumbbells",
-      "load_basis": "per_limb",
-      "limbs_sharing_load": 1,
-      "sets": [
-        {
-          "id": "curl-left-1",
-          "load": 20,
-          "unit": "lb",
-          "reps": 10,
-          "rir": 2,
-          "side": "left"
-        }
-      ],
-      "equipment_type": "free_weight"
-    },
-    {
-      "exercise": "preacher-curl",
-      "equipment": "preacher-machine",
-      "load_basis": "combined",
-      "limbs_sharing_load": 2,
-      "sets": [
-        {
-          "id": "curl-machine-1",
-          "load": 40,
-          "unit": "lb",
-          "reps": 10,
-          "rpe": 8,
-          "side": "both"
-        }
-      ],
-      "equipment_type": "machine"
-    }
+  "id":"example-workout",
+  "date":"2026-09-09",
+  "location":"example-gym",
+  "notes":"Synthetic test data, not a real workout.",
+  "exercises":[
+    {"exercise":"preacher-curl","equipment":"dumbbells","sets":[
+      {"id":"curl-left-1","load":20,"unit":"lb","reps":10,"rir":2,"side":"left"}
+    ]},
+    {"exercise":"preacher-curl","equipment":"preacher-machine","sets":[
+      {"id":"curl-machine-1","load":40,"unit":"lb","reps":10,"rpe":8,"side":"both"}
+    ]}
   ]
 }
