@@ -58,19 +58,22 @@ def validate_workout(w, exercises, locations):
 
     set_ids = set()
     for block in w['exercises']:
-        fields(block, ('exercise', 'equipment', 'sets'), ('notes',))
+        fields(block, ('exercise', 'sets'), ('equipment', 'notes'))
         require(block['exercise'] in exercises, f'Unknown exercise: {block["exercise"]}')
-        slug(block['equipment'])
+        if 'equipment' in block:
+            slug(block['equipment'])
         require(isinstance(block.get('notes', ''), str), 'Notes must be text')
         require(isinstance(block['sets'], list) and block['sets'], 'Exercise needs sets')
 
         for s in block['sets']:
-            fields(s, ('id', 'load', 'unit', 'reps'), ('rir', 'rpe', 'side', 'kind', 'notes'))
+            fields(s, ('id', 'reps'), ('load', 'unit', 'rir', 'rpe', 'side', 'kind', 'notes'))
             slug(s['id'])
             require(s['id'] not in set_ids, f'Duplicate set ID: {s["id"]}')
             set_ids.add(s['id'])
-            require(number(s['load']) and s['load'] >= 0, 'Load must be a finite nonnegative number')
-            require(s['unit'] in ('lb', 'kg'), 'Unit must be lb or kg')
+            require(('load' in s) == ('unit' in s), 'Load and unit must be recorded together or both omitted')
+            if 'load' in s:
+                require(number(s['load']) and s['load'] >= 0, 'Load must be a finite nonnegative number')
+                require(s['unit'] in ('lb', 'kg'), 'Unit must be lb or kg')
             require(type(s['reps']) is int and s['reps'] > 0, 'Reps must be a positive integer')
             require(not ('rir' in s and 'rpe' in s), 'Record RIR or RPE, not both')
             if 'rir' in s:
