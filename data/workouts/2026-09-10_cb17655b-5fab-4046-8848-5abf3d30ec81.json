@@ -19,16 +19,16 @@
       "exercise": "hammer-curl",
       "equipment": "dumbbell",
       "sets": [
-        {"id":"320186bb-9795-404a-9dfc-58672a4bcc5d","load":30,"unit":"lb","reps":10,"rir":2,"side":"n/a"}
+        {"id":"320186bb-9795-404a-9dfc-58672a4bcc5d","load":30,"unit":"lb","reps":10,"rir":2}
       ]
     },
     {
       "exercise": "incline-bench-press",
       "equipment": "dumbbell",
       "sets": [
-        {"id":"52fe93aa-75d7-4a55-a0d3-1dd259284f4a","load":45,"unit":"lb","reps":8,"side":"n/a","kind":"warmup"},
-        {"id":"8adcc83c-63a9-47ac-8f31-5a95ca9e2954","load":55,"unit":"lb","reps":7,"rir":2,"side":"n/a"},
-        {"id":"8a65fe8b-dc4d-40e0-9832-b09250ac15ae","load":55,"unit":"lb","reps":7,"rir":1,"side":"n/a"}
+        {"id":"52fe93aa-75d7-4a55-a0d3-1dd259284f4a","load":45,"unit":"lb","reps":8,"kind":"warmup"},
+        {"id":"8adcc83c-63a9-47ac-8f31-5a95ca9e2954","load":55,"unit":"lb","reps":7,"rir":2},
+        {"id":"8a65fe8b-dc4d-40e0-9832-b09250ac15ae","load":55,"unit":"lb","reps":7,"rir":1}
       ]
     },
     {
@@ -41,6 +41,21 @@
         {"id":"e23e3e68-ff56-488d-9089-27f7d4e9f6af","load":20,"unit":"lb","reps":10,"rir":3,"side":"right"},
         {"id":"d99c507c-d450-4098-8458-56e7eb369130","load":20,"unit":"lb","reps":10,"rir":2,"side":"right"},
         {"id":"cefba1fa-ee28-4ed8-b95f-1fae3536c98c","load":20,"unit":"lb","reps":12,"rir":3,"side":"left"}
+      ]
+    },
+    {
+      "exercise": "pull-up",
+      "sets": [
+        {"id":"1cf20346-acc0-4f31-aa43-2b216f6a0863","reps":8,"rir":3},
+        {"id":"e548fb6b-b022-49d6-9ca1-958e95970359","reps":8,"rir":1},
+        {"id":"ebf0c601-9e8e-47b4-b68f-3aafc88cc0c4","reps":8,"rir":0}
+      ]
+    },
+    {
+      "exercise": "chest-press",
+      "equipment": "chest-press-machine",
+      "sets": [
+        {"id":"3f42e356-37eb-416c-b5b0-052f5273721d","load":200,"unit":"lb","reps":1,"rir":0}
       ]
     }
   ]
