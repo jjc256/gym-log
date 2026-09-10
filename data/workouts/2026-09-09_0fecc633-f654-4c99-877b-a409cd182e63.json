@@ -52,7 +52,8 @@
           "rir": 1,
           "side": "both"
         }
-      ]
+      ],
+      "equipment_type": "machine"
     },
     {
       "exercise": "hip-adduction",
@@ -77,7 +78,8 @@
           "rir": 1,
           "side": "both"
         }
-      ]
+      ],
+      "equipment_type": "machine"
     },
     {
       "exercise": "leg-curl",
@@ -110,13 +112,14 @@
           "rir": 1,
           "side": "both"
         }
-      ]
+      ],
+      "equipment_type": "machine"
     },
     {
       "exercise": "abdominal-crunch",
       "equipment": "abdominal-crunch-machine",
-      "load_basis": "combined",
-      "limbs_sharing_load": 2,
+      "load_basis": "total",
+      "limbs_sharing_load": 1,
       "sets": [
         {
           "id": "04a79f70-25f6-4568-94ac-63d030b86a8a",
@@ -135,7 +138,8 @@
           "rir": 2,
           "side": "both"
         }
-      ]
+      ],
+      "equipment_type": "machine"
     }
   ]
 }

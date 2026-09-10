@@ -2,21 +2,27 @@
   {
     "id": "leg-press",
     "name": "Leg press",
-    "aliases": []
+    "aliases": [],
+    "load_scope": "per_limb"
   },
   {
     "id": "hip-adduction",
     "name": "Hip adduction",
-    "aliases": []
+    "aliases": [],
+    "load_scope": "per_limb"
   },
   {
     "id": "leg-curl",
     "name": "Leg curl",
-    "aliases": []
+    "aliases": [],
+    "load_scope": "per_limb"
   },
   {
     "id": "abdominal-crunch",
     "name": "Abdominal crunch",
-    "aliases": ["abdominal crunches"]
+    "aliases": [
+      "abdominal crunches"
+    ],
+    "load_scope": "total"
   }
 ]
