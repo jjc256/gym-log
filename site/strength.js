@@ -4,7 +4,7 @@ function converted(load, unit, target = 'lb') {
   return load * (unit === target ? 1 : unit === 'kg' ? 2.2046226218487757 : 1 / 2.2046226218487757);
 }
 function sideOf(row) {
-  return row.side || 'both';
+  return row.side || 'n/a';
 }
 function comparisonKey(row) {
   return JSON.stringify([row.location, row.exercise, row.equipment, sideOf(row)]);
