@@ -19,7 +19,7 @@ function maps(data){return {
   locations:Object.fromEntries(data.locations.map(x=>[x.id,x.name])),
   exercises:Object.fromEntries(data.exercises.map(x=>[x.id,x.name]))
 };}
-function effortText(s){return s.rir!==undefined?`${s.rir} RIR`:s.rpe!==undefined?`${s.rpe} RPE`:'—';}
+function effortText(s){if((s.kind||'working')==='warmup')return'n/a';return s.rir!==undefined?`${s.rir} RIR`:s.rpe!==undefined?`${s.rpe} RPE`:'—';}
 function sideLabel(side){return !side||side==='n/a'?'':side;}
 function prettyDate(date){return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
 function exerciseSummary(block,names){
