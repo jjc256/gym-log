@@ -3,5 +3,6 @@
   {"id":"hip-adduction","name":"Hip adduction","aliases":[]},
   {"id":"leg-curl","name":"Leg curl","aliases":[]},
   {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]},
-  {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]}
+  {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]},
+  {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]}
 ]
