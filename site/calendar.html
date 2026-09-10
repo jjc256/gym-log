@@ -8,11 +8,12 @@
 <script defer src="data.js"></script><script defer src="app.js"></script>
 </head>
 <body data-page="calendar">
-<header class="site-header"><a class="brand" href="./">Gym Log</a><nav><a href="./">Home</a><a class="active" href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
-<main>
+<header class="site-header"><a class="brand" href="./">Gym Log</a><nav aria-label="Main navigation"><a href="./">Home</a><a class="active" aria-current="page" href="calendar.html">Calendar</a><a href="progress.html">Progress</a></nav></header>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main">
 <section class="page-heading"><div><h1>Calendar</h1><p class="muted">Days with logged workouts are highlighted.</p></div></section>
 <div id="calendarPage" hidden>
-<section class="calendar-toolbar"><button id="prevMonth" type="button" aria-label="Previous month">←</button><h2 id="monthLabel"></h2><button id="nextMonth" type="button" aria-label="Next month">→</button></section>
+<p id="monthSummary" class="muted" aria-live="polite"></p><section class="calendar-toolbar"><button id="prevMonth" type="button" aria-label="Previous month">←</button><div class="month-heading"><h2 id="monthLabel"></h2><button id="todayMonth" type="button">This month</button></div><button id="nextMonth" type="button" aria-label="Next month">→</button></section>
 <section id="calendar" class="calendar" aria-label="Workout calendar"></section>
 <section class="section"><div class="section-heading"><h2 id="dayTitle">Select a workout day</h2></div><div id="dayDetails" class="workout-detail"><p class="muted">Choose a highlighted day to see the workout.</p></div></section>
 </div>

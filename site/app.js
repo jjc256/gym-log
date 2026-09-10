@@ -28,7 +28,7 @@ function exerciseSummary(block,names){
     const chip=document.createElement('span');chip.className='set-chip';
     const kind=s.kind||'working';
     if(kind==='warmup')chip.classList.add('warmup');
-    chip.textContent=`${s.load} ${s.unit} × ${s.reps} · ${effortText(s)}${kind==='warmup'?' · Warm-up':kind==='drop'?' · Drop':''}`;
+    chip.textContent=`${s.load} ${s.unit} × ${s.reps}${s.side&&s.side!=='both'?' · '+s.side:''}${effortText(s)==='—'?'':' · '+effortText(s)}${kind==='warmup'?' · Warm-up':kind==='drop'?' · Drop':''}`;
     sets.append(chip);
   }
   wrap.append(sets);return wrap;
@@ -36,20 +36,33 @@ function exerciseSummary(block,names){
 function workoutCard(w,names,compact=false){
   const card=document.createElement('article');card.className='workout-card';
   const head=document.createElement('div');head.className='workout-card-head';
-  const date=document.createElement('strong');date.textContent=prettyDate(w.date);
+  const date=document.createElement('strong');date.textContent=prettyDate(w.date);if(compact){const link=document.createElement('a');link.href=`calendar.html?date=${encodeURIComponent(w.date)}`;link.textContent=date.textContent;date.replaceChildren(link);}
   const loc=document.createElement('span');loc.className='muted';loc.textContent=names.locations[w.location]||w.location;
   head.append(date,loc);card.append(head);
   if(!compact) for(const b of w.exercises)card.append(exerciseSummary(b,names));
   else {const p=document.createElement('p');p.className='muted';p.textContent=`${w.exercises.length} exercise${w.exercises.length===1?'':'s'} · ${w.exercises.reduce((n,b)=>n+b.sets.length,0)} sets`;card.append(p);}
   return card;
 }
+function weeklyActivity(workouts, today=new Date()) {
+  const end=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+  const start=new Date(end);start.setDate(start.getDate()-start.getDay()-49);
+  return Array.from({length:8},(_,i)=>{
+    const from=new Date(start);from.setDate(from.getDate()+7*i);
+    const to=new Date(from);to.setDate(to.getDate()+7);
+    const selected=workouts.filter(w=>{const d=new Date(w.date+'T00:00:00');return d>=from&&d<to&&d<=end;});
+    return {label:from.toLocaleDateString(undefined,{month:'short',day:'numeric'}),days:new Set(selected.map(w=>w.date)).size,sets:selected.reduce((n,w)=>n+w.exercises.reduce((m,b)=>m+b.sets.filter(s=>(s.kind||'working')==='working').length,0),0)};
+  });
+}
 function startHome(data){
   const all=rowsOf(data), names=maps(data), workouts=[...data.workouts].sort((a,b)=>a.date.localeCompare(b.date));
   $('empty').hidden=all.length>0;$('home').hidden=!all.length;if(!all.length)return;
   const latest=workouts.at(-1);$('updated').textContent=`Last workout · ${prettyDate(latest.date)}`;
-  $('totalWorkouts').textContent=workouts.length;$('totalSets').textContent=all.filter(r=>(r.kind||'working')==='working').length;
+  $('totalWorkouts').textContent=workouts.length;$('totalSets').textContent=all.length;$('workingSets').textContent=all.filter(r=>(r.kind||'working')==='working').length;
   const now=new Date(),ym=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
   $('daysThisMonth').textContent=new Set(workouts.filter(w=>w.date.startsWith(ym)).map(w=>w.date)).size;
+  const weeks=weeklyActivity(workouts),max=Math.max(1,...weeks.map(w=>w.sets));
+  for(const week of weeks){const column=document.createElement('div');column.className='rhythm-column';const bar=document.createElement('div');bar.className='rhythm-bar';bar.style.height=`${Math.max(3,week.sets/max*100)}px`;const number=document.createElement('strong');number.textContent=week.sets;const label=document.createElement('span');label.textContent=week.label;column.title=`Week of ${week.label}: ${week.days} training days, ${week.sets} working sets`;column.append(number,bar,label);$('rhythm').append(column);}
+  $('rhythmSummary').textContent=`${weeks.reduce((n,w)=>n+w.days,0)} training days across these weeks · Current week is in progress.`;
   $('latestWorkout').append(workoutCard(latest,names));
   const recent=$('recentDays');for(const w of workouts.slice(-6).reverse())recent.append(workoutCard(w,names,true));
 }
@@ -57,22 +70,25 @@ function startCalendar(data){
   const names=maps(data), workouts=[...data.workouts].sort((a,b)=>a.date.localeCompare(b.date));
   $('calendarEmpty').hidden=workouts.length>0;$('calendarPage').hidden=!workouts.length;if(!workouts.length)return;
   const byDate=new Map();for(const w of workouts){if(!byDate.has(w.date))byDate.set(w.date,[]);byDate.get(w.date).push(w);}
-  const latest=new Date(workouts.at(-1).date+'T12:00:00');let year=latest.getFullYear(),month=latest.getMonth();
+  const requested=new URLSearchParams(window.location.search).get('date'), initial=byDate.has(requested)?requested:workouts.at(-1).date;
+  const latest=new Date(initial+'T12:00:00');let year=latest.getFullYear(),month=latest.getMonth();
   function showDay(date){
     const list=byDate.get(date)||[];$('dayTitle').textContent=list.length?prettyDate(date):'No workout';$('dayDetails').replaceChildren();
     if(!list.length){const p=document.createElement('p');p.className='muted';p.textContent='No workout was logged on this day.';$('dayDetails').append(p);return;}
     for(const w of list)$('dayDetails').append(workoutCard(w,names));
-    for(const el of document.querySelectorAll('.calendar-day.selected'))el.classList.remove('selected');
-    const cell=document.querySelector(`[data-date="${date}"]`);if(cell)cell.classList.add('selected');
+    for(const el of document.querySelectorAll('.calendar-day.selected')){el.classList.remove('selected');el.setAttribute('aria-pressed','false');}
+    const cell=document.querySelector(`[data-date="${date}"]`);if(cell){cell.classList.add('selected');cell.setAttribute('aria-pressed','true');}
   }
   function renderMonth(){
+    const monthWorkouts=workouts.filter(w=>w.date.startsWith(`${year}-${String(month+1).padStart(2,'0')}`));$('monthSummary').textContent=`${new Set(monthWorkouts.map(w=>w.date)).size} training days · ${monthWorkouts.length} workouts`;
+    $('dayTitle').textContent='Select a workout day';$('dayDetails').replaceChildren();
     $('monthLabel').textContent=new Date(year,month,1).toLocaleDateString(undefined,{month:'long',year:'numeric'});const cal=$('calendar');cal.replaceChildren();
     for(const d of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']){const x=document.createElement('div');x.className='weekday';x.textContent=d;cal.append(x);}
     const first=new Date(year,month,1).getDay(),days=new Date(year,month+1,0).getDate();
     for(let i=0;i<first;i++){const blank=document.createElement('div');blank.className='calendar-day blank';cal.append(blank);}
     for(let day=1;day<=days;day++){
       const date=`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`, list=byDate.get(date)||[];
-      const button=document.createElement('button');button.type='button';button.className='calendar-day';button.dataset.date=date;
+      const button=document.createElement('button');button.type='button';button.className='calendar-day';button.dataset.date=date;button.setAttribute('aria-label',`${prettyDate(date)}: ${list.length} workouts`);button.setAttribute('aria-pressed','false');
       const n=document.createElement('span');n.className='day-number';n.textContent=day;button.append(n);
       if(list.length){button.classList.add('trained');const dot=document.createElement('span');dot.className='workout-dot';dot.textContent=`${list.reduce((n,w)=>n+w.exercises.reduce((m,b)=>m+b.sets.length,0),0)} sets`;button.append(dot);button.addEventListener('click',()=>showDay(date));}
       else button.disabled=true;cal.append(button);
@@ -80,7 +96,8 @@ function startCalendar(data){
   }
   $('prevMonth').addEventListener('click',()=>{month--;if(month<0){month=11;year--;}renderMonth();});
   $('nextMonth').addEventListener('click',()=>{month++;if(month>11){month=0;year++;}renderMonth();});
-  renderMonth();showDay(workouts.at(-1).date);
+  $('todayMonth').addEventListener('click',()=>{const now=new Date();year=now.getFullYear();month=now.getMonth();renderMonth();});
+  renderMonth();showDay(initial);
 }
 function options(id, entries, first) {
   const select=$(id), previous=select.value;select.replaceChildren();
@@ -88,15 +105,23 @@ function options(id, entries, first) {
   if ([...select.options].some(o=>o.value===previous)) select.value=previous;
 }
 function svgElement(name, attrs={}, text) {const el=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [key,value] of Object.entries(attrs))el.setAttribute(key,String(value));if(text!==undefined)el.textContent=text;return el;}
+function niceAxis(maximum) {
+  const limit=maximum>0?maximum*1.05:1;
+  const rough=limit/5, magnitude=10**Math.floor(Math.log10(rough));
+  const step=[1,2,2.5,5,10].find(n=>n*magnitude>=rough)*magnitude;
+  const count=Math.ceil(limit/step);
+  const ticks=Array.from({length:count+1},(_,i)=>Number((i*step).toPrecision(12)));
+  return {top:ticks.at(-1),ticks};
+}
 function drawChart(rows, valueOf, unit) {
   $('chart').replaceChildren();$('legend').replaceChildren();if(!rows.length){$('chart').textContent='No sets match these filters.';return;}
   const groups=new Map();for(const r of rows){const key=`${r.key} · ${r.side||'unspecified'}`;if(!groups.has(key))groups.set(key,new Map());const prev=groups.get(key).get(r.workout);if(!prev||valueOf(r)>valueOf(prev))groups.get(key).set(r.workout,r);}
-  const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),top=Math.max(1,...all.map(valueOf))*1.15;
+  const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),axis=niceAxis(Math.max(0,...all.map(valueOf))),top=axis.top;
   const x=r=>min===max?475:70+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*810,y=r=>285-valueOf(r)/top*240;
   const svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Best matching load per session in ${unit}.`});
-  for(let i=0;i<=4;i++){const yy=285-i*60;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},(top*i/4).toFixed(1)));}
+  for(const tick of axis.ticks){const yy=285-tick/top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
   svg.append(svgElement('text',{x:70,y:320,fill:'#65747d','font-size':14},new Date(min).toISOString().slice(0,10)));if(max!==min)svg.append(svgElement('text',{x:880,y:320,'text-anchor':'end',fill:'#65747d','font-size':14},new Date(max).toISOString().slice(0,10)));
-  let index=0;for(const [key,group] of groups){const color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points){const dot=svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color});dot.append(svgElement('title',{},`${r.date} · ${key}: ${valueOf(r).toFixed(2)} ${unit} × ${r.reps}`));svg.append(dot);}const label=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;label.append(swatch,document.createTextNode(key));$('legend').append(label);}$('chart').append(svg);
+  let index=0;for(const [key,group] of groups){const displayKey=key.replace(/ · both$/,'');const color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points){const dot=svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color});dot.append(svgElement('title',{},`${r.date} · ${displayKey}: ${valueOf(r).toFixed(2)} ${unit} × ${r.reps}`));svg.append(dot);}const label=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;label.append(swatch,document.createTextNode(displayKey));$('legend').append(label);}$('chart').append(svg);
 }
 function startProgress(data){
   const all=rowsOf(data), names=maps(data);$('progressEmpty').hidden=all.length>0;$('dashboard').hidden=!all.length;if(!all.length)return;
@@ -109,13 +134,17 @@ function startProgress(data){
     const rows=matching.filter(r=>((r.kind||'working')==='working'||(includeWarmups&&(r.kind||'working')==='warmup'))&&(mode==='raw'||(mode==='total'?r.basis==='total':r.basis!=='total'))&&r.reps>=Number($('minReps').value||1)&&(!$('maxReps').value||r.reps<=Number($('maxReps').value))&&(!$('from').value||r.date>=$('from').value)&&(!$('to').value||r.date<=$('to').value)&&($('effort').value==='all'||(r[$('effort').value]!==undefined&&(!$('minEffort').value||r[$('effort').value]>=Number($('minEffort').value))&&(!$('maxEffort').value||r[$('effort').value]<=Number($('maxEffort').value)))));
     $('minEffort').disabled=$('maxEffort').disabled=$('effort').value==='all';$('sessions').textContent=new Set(rows.map(r=>r.workout)).size;$('setCount').textContent=rows.length;$('latest').textContent=rows.length?rows.map(r=>r.date).sort().at(-1):'—';
     $('chartTitle').textContent=`Best ${mode==='normalized'?'per-limb ':mode==='total'?'total ':''}load per session (${unit})`;
-    $('comparison').textContent=(mode==='normalized'?'Nominal load per limb. Combined loads are divided by the recorded number of limbs; equipment remains separate.':mode==='total'?'Only entries recorded as total load are included.':'Original load conventions, converted only between lb and kg.')+(includeWarmups?' Warmups are included.':' Warmups are excluded.');
+    $('comparison').textContent=(mode==='normalized'?'Nominal load per limb. Combined loads are divided by the recorded number of limbs; equipment remains separate.':mode==='total'?'Only entries recorded as total load are included.':'Original load conventions, converted only between lb and kg.');
     drawChart(rows,valueOf,unit);
     const body=$('history');body.replaceChildren();
-    for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,r.kind||'working',`${r.load} ${r.unit} (${r.basis.replace('_',' ')})`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),r.side||'unspecified',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
+    for(const r of [...rows].sort((a,b)=>b.date.localeCompare(a.date))){const tr=document.createElement('tr');for(const value of [r.date,`${names.locations[r.location]||r.location} / ${r.equipment}`,r.kind||'working',`${r.load} ${r.unit}${r.basis==='combined'?'':` (${r.basis.replace('_',' ')})`}`,`${Number(valueOf(r).toFixed(2))} ${unit}`,r.reps,effortText(r),r.side==='both'?'':r.side||'unspecified',r.notes||'—']){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr);}
   }
+  $('resetFilters').addEventListener('click',()=>{
+    for(const id of ['location','equipment','from','to','maxReps','minEffort','maxEffort'])$(id).value='';
+    $('minReps').value='1';$('effort').value='all';$('includeWarmups').checked=true;$('mode').value='raw';$('unit').value='lb';equipmentOptions();render();
+  });
   equipmentOptions();function chooseMode(){$('mode').value='raw';}chooseMode();for(const el of document.querySelectorAll('select,input'))el.addEventListener('change',()=>{if(el.id==='exercise'||el.id==='location')equipmentOptions();if(el.id==='exercise')chooseMode();render();});render();
 }
 function start(){const data=window.GYM_DATA;if(!data)throw new Error('Workout data could not be loaded. Rebuild the dashboard and try again.');const page=document.body.dataset.page;if(page==='home')startHome(data);else if(page==='calendar')startCalendar(data);else if(page==='progress')startProgress(data);}
-if(typeof module!=='undefined')module.exports={normalized,rowsOf};
+if(typeof module!=='undefined')module.exports={normalized,rowsOf,weeklyActivity,niceAxis};
 if(typeof document!=='undefined')try{start();}catch(error){if($('error')){$('error').hidden=false;$('error').textContent=error.message;}else console.error(error);}
