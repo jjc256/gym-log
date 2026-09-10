@@ -6,7 +6,7 @@ const palette = ['#087e92','#b95617','#6e53a7','#227a4a','#b33c68','#596a12'];
 function rowsOf(data) {
   return data.workouts.flatMap(w => w.exercises.flatMap(b => b.sets.map(s => ({
     ...s,
-    side:s.side || 'both',
+    side:s.side || 'n/a',
     date:w.date,
     workout:w.id,
     location:w.location,
@@ -20,7 +20,7 @@ function maps(data){return {
   exercises:Object.fromEntries(data.exercises.map(x=>[x.id,x.name]))
 };}
 function effortText(s){return s.rir!==undefined?`${s.rir} RIR`:s.rpe!==undefined?`${s.rpe} RPE`:'—';}
-function sideLabel(side){return !side||side==='both'?'':side;}
+function sideLabel(side){return !side||side==='n/a'?'':side;}
 function prettyDate(date){return new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric',year:'numeric'});}
 function exerciseSummary(block,names){
   const wrap=document.createElement('div');wrap.className='exercise-block';
@@ -120,7 +120,7 @@ function drawChart(rows,valueOf,unit){
   const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),axis=niceAxis(Math.max(0,...all.map(valueOf))),top=axis.top;
   const x=r=>min===max?475:70+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*810,y=r=>285-valueOf(r)/top*240,svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Best load per session in ${unit}.`});
   for(const tick of axis.ticks){const yy=285-tick/top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
-  let index=0;for(const [side,group]of groups){const label=sideLabel(side)||'both',color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points)svg.append(svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color}));const item=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;item.append(swatch,document.createTextNode(label));$('legend').append(item);}
+  let index=0;for(const [side,group]of groups){const label=sideLabel(side)||'All sets',color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points)svg.append(svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color}));const item=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;item.append(swatch,document.createTextNode(label));$('legend').append(item);}
   $('chart').append(svg);
 }
 function startProgress(data){
