@@ -9,5 +9,6 @@
   {"id":"lateral-raise","name":"Lateral raise","aliases":["lateral raises","cable lateral raise","cable lateral raises"]},
   {"id":"pull-up","name":"Pull-up","aliases":["pull ups","pull-ups"]},
   {"id":"chest-press","name":"Chest press","aliases":["chest press machine"]},
-  {"id":"seated-row","name":"Seated row","aliases":["seated rows"]}
+  {"id":"seated-row","name":"Seated row","aliases":["seated rows"]},
+  {"id":"overhead-press","name":"Overhead press","aliases":["shoulder press","machine overhead press"]}
 ]
