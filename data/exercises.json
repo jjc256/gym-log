@@ -11,5 +11,6 @@
   {"id":"chest-press","name":"Chest press","aliases":["chest press machine"]},
   {"id":"seated-row","name":"Seated row","aliases":["seated rows"]},
   {"id":"overhead-press","name":"Overhead press","aliases":["shoulder press","machine overhead press"]},
-  {"id":"tricep-extension","name":"Tricep extension","aliases":["triceps extension","machine tricep extension"]}
+  {"id":"tricep-extension","name":"Tricep extension","aliases":["triceps extension","machine tricep extension"]},
+  {"id":"rear-delt-fly","name":"Rear delt fly","aliases":["rear delt flies","cable rear delt fly","cable rear delt flies"]}
 ]
