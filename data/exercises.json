@@ -10,5 +10,6 @@
   {"id":"pull-up","name":"Pull-up","aliases":["pull ups","pull-ups"]},
   {"id":"chest-press","name":"Chest press","aliases":["chest press machine"]},
   {"id":"seated-row","name":"Seated row","aliases":["seated rows"]},
-  {"id":"overhead-press","name":"Overhead press","aliases":["shoulder press","machine overhead press"]}
+  {"id":"overhead-press","name":"Overhead press","aliases":["shoulder press","machine overhead press"]},
+  {"id":"tricep-extension","name":"Tricep extension","aliases":["triceps extension","machine tricep extension"]}
 ]
