@@ -1,0 +1,17 @@
+{
+  "id": "6a7f5b6f-5f5c-4e8e-a9e8-2df9d927c1f5",
+  "date": "2026-09-12",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {"id":"72f35f3d-cf14-48e8-a222-3f7bb917d67f","load":100,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"ce457fe5-6de2-4e09-b47d-4afda5451c23","load":130,"unit":"lb","reps":10,"rir":5},
+        {"id":"1bbfd566-9497-4da5-bd93-5775f40f8843","load":140,"unit":"lb","reps":10,"rir":3},
+        {"id":"823b1a45-0997-4132-a855-a8769979d327","load":170,"unit":"lb","reps":7,"rir":1}
+      ]
+    }
+  ]
+}
