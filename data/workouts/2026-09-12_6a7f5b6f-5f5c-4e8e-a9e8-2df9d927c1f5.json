@@ -12,6 +12,15 @@
         {"id":"1bbfd566-9497-4da5-bd93-5775f40f8843","load":140,"unit":"lb","reps":10,"rir":3},
         {"id":"823b1a45-0997-4132-a855-a8769979d327","load":170,"unit":"lb","reps":7,"rir":1}
       ]
+    },
+    {
+      "exercise": "overhead-press",
+      "equipment": "overhead-press-machine",
+      "sets": [
+        {"id":"6c9fe01a-1f03-4cda-9447-d816ca2e4ef4","load":80,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"9d173963-824e-4a5f-8f14-fcf8c3c92c02","load":100,"unit":"lb","reps":6,"rir":1},
+        {"id":"6ef2a839-e62c-4af1-910d-28e97f28d9b7","load":100,"unit":"lb","reps":8,"rir":0}
+      ]
     }
   ]
 }
