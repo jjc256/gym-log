@@ -37,6 +37,15 @@
         {"id":"f48cae7c-b526-45a6-868a-77d16ebc18a7","load":80,"unit":"lb","reps":10,"kind":"warmup"},
         {"id":"7f665747-0bdf-4d65-8348-cf0d45ce0701","load":110,"unit":"lb","reps":9,"rir":2}
       ]
+    },
+    {
+      "exercise": "chest-press",
+      "equipment": "chest-press-machine",
+      "notes": "Failed attempt: 230 lb x 0 reps.",
+      "sets": [
+        {"id":"6d7554fb-4dd9-4af8-9aef-9ec98764aa5d","load":210,"unit":"lb","reps":1,"rir":2},
+        {"id":"f2abcb2e-2301-4a1c-8813-f7422838c4a3","load":220,"unit":"lb","reps":1,"rir":0}
+      ]
     }
   ]
 }
