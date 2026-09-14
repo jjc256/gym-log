@@ -18,6 +18,7 @@ assert.notEqual(comparisonKey({...base,equipment:'machine-b'}),comparisonKey(bas
 assert.notEqual(comparisonKey({...base,exercise:'row'}),comparisonKey(base));
 
 assert.ok(Math.abs(impliedOneRM(100,8,2)-133.33333333333331)<1e-9);
+assert.equal(impliedOneRM(100,8,undefined),null);
 let groups=strengthSeries([
   base,
   {...base,id:'b',workout:'w-b',date:'2026-09-02',load:110},
@@ -28,6 +29,12 @@ let groups=strengthSeries([
 assert.equal(groups.length,4);
 const same=groups.find(g=>g.row.location==='gym-a'&&g.row.equipment==='machine-a'&&g.row.side==='n/a');
 assert.equal(same.days.length,2);
+
+const noEffort=strengthSeries([
+  {...base,id:'effort',load:175,reps:7,rir:1},
+  {...base,id:'blank',load:100,reps:8,rir:undefined,notes:'fast twitch'}
+])[0];
+assert.equal(noEffort.days[0].estimate.row.id,'effort');
 
 assert.equal(recordSeries([{...base,reps:1,rir:undefined},{...base,id:'l',workout:'wl',side:'left',reps:1,rir:undefined}]).length,2);
 
