@@ -21,6 +21,14 @@
         {"id":"24e86342-7bfd-491d-a8bb-7b737d4da250","load":130,"unit":"lb","reps":8,"rir":3},
         {"id":"2021e277-66cb-4436-8524-cab2f9f74341","load":140,"unit":"lb","reps":8,"rir":2}
       ]
+    },
+    {
+      "exercise": "hip-adduction",
+      "equipment": "hip-adduction-abduction-machine",
+      "sets": [
+        {"id":"12d20908-529e-4c23-849a-e86693cf4c75","load":80,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"6f981c58-e825-4395-b2e2-e390686bca7c","load":90,"unit":"lb","reps":7,"rir":1}
+      ]
     }
   ]
 }
