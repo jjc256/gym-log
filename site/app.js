@@ -111,6 +111,45 @@ function options(id,entries){
   if([...select.options].some(o=>o.value===previous))select.value=previous;
 }
 function svgElement(name,attrs={},text){const el=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [key,value]of Object.entries(attrs))el.setAttribute(key,String(value));if(text!==undefined)el.textContent=text;return el;}
+// Rebuild the SVG at its displayed width so mobile labels and targets stay readable.
+function interactiveGraph(label,draw){
+  const wrap=document.createElement('div');wrap.className='interactive-graph';
+  const svg=svgElement('svg',{role:'group','aria-label':label});
+  const tooltip=document.createElement('div');tooltip.className='chart-tooltip';tooltip.hidden=true;
+  wrap.append(svg,tooltip);
+  let active=null;
+  const hide=()=>{tooltip.hidden=true;if(active)active.classList.remove('active');active=null;};
+  function render(width){
+    hide();svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} 320`);
+    const point=(x,y,color,lines)=>{
+      const dot=svgElement('circle',{cx:x,cy:y,r:5,fill:color,tabindex:0,role:'button','aria-label':lines.join(' · '),class:'chart-point'});
+      const show=()=>{
+        if(active)active.classList.remove('active');active=dot;dot.classList.add('active');
+        tooltip.textContent=lines.join('\n');tooltip.hidden=false;
+        tooltip.style.left=`${Math.max(0,Math.min(x-tooltip.offsetWidth/2,width-tooltip.offsetWidth))}px`;
+        tooltip.style.top=`${y>tooltip.offsetHeight+16?y-tooltip.offsetHeight-12:y+16}px`;
+      };
+      dot.addEventListener('pointerenter',event=>{if(event.pointerType!=='touch')show();});
+      dot.addEventListener('pointerleave',event=>{if(event.pointerType!=='touch'&&document.activeElement!==dot)hide();});
+      dot.addEventListener('focus',show);dot.addEventListener('blur',hide);
+      dot.addEventListener('click',show);
+      dot.addEventListener('keydown',event=>{if(event.key==='Escape')hide();if(event.key==='Enter'||event.key===' '){event.preventDefault();show();}});
+      svg.append(dot);
+    };
+    draw(svg,width,point);
+  }
+  svg.addEventListener('click',event=>{if(!event.target.classList.contains('chart-point'))hide();});
+  let lastWidth=0;
+  const observer=new ResizeObserver(entries=>{
+    if(!wrap.isConnected){observer.disconnect();return;}
+    const width=Math.floor(entries[0].contentRect.width);if(width>0&&width!==lastWidth){lastWidth=width;render(width);}
+  });
+  observer.observe(wrap);
+  return wrap;
+}
+function graphAxes(svg,width,axis){
+  for(const tick of axis.ticks){const yy=275-tick/axis.top*240;svg.append(svgElement('line',{x1:52,x2:width-24,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:44,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
+}
 function niceAxis(maximum){
   const limit=maximum>0?maximum*1.05:1,rough=limit/5,magnitude=10**Math.floor(Math.log10(rough));
   const step=[1,2,2.5,5,10].find(n=>n*magnitude>=rough)*magnitude,count=Math.ceil(limit/step);
@@ -121,10 +160,17 @@ function drawChart(rows,valueOf,unit){
   $('chart').replaceChildren();$('legend').replaceChildren();const chartRows=rows.filter(r=>Number.isFinite(valueOf(r)));if(!chartRows.length){$('chart').textContent='No load recorded for matching sets.';return;}
   const groups=new Map();for(const r of chartRows){const side=strength.sideOf(r);if(!groups.has(side))groups.set(side,new Map());const prev=groups.get(side).get(r.workout);if(!prev||valueOf(r)>valueOf(prev))groups.get(side).set(r.workout,r);}
   const all=[...groups.values()].flatMap(g=>[...g.values()]),times=all.map(r=>Date.parse(r.date+'T00:00:00Z')),min=Math.min(...times),max=Math.max(...times),axis=niceAxis(Math.max(0,...all.map(valueOf))),top=axis.top;
-  const x=r=>min===max?475:70+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*810,y=r=>285-valueOf(r)/top*240,svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Best load per session in ${unit}.`});
-  for(const tick of axis.ticks){const yy=285-tick/top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
-  let index=0;for(const [side,group]of groups){const label=sideLabel(side)||'All sets',color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));for(const r of points)svg.append(svgElement('circle',{cx:x(r),cy:y(r),r:5,fill:color}));const item=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=color;item.append(swatch,document.createTextNode(label));$('legend').append(item);}
-  $('chart').append(svg);
+  const graph=interactiveGraph(`Best load per session in ${unit}.`,(svg,width,point)=>{
+    const x=r=>min===max?(52+width-24)/2:52+(Date.parse(r.date+'T00:00:00Z')-min)/(max-min)*(width-76),y=r=>275-valueOf(r)/top*240;
+    graphAxes(svg,width,axis);
+    let index=0;for(const [side,group]of groups){
+      const label=sideLabel(side)||'All sets',color=palette[index++%palette.length],points=[...group.values()].sort((a,b)=>a.date.localeCompare(b.date));
+      svg.append(svgElement('polyline',{points:points.map(r=>`${x(r)},${y(r)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5}));
+      for(const r of points)point(x(r),y(r),color,[prettyDate(r.date),`${Number(valueOf(r).toFixed(2))} ${unit} × ${r.reps}`,label,...(effortText(r)==='—'?[]:[effortText(r)])]);
+    }
+  });
+  let index=0;for(const side of groups.keys()){const item=document.createElement('span'),swatch=document.createElement('i');swatch.style.background=palette[index++%palette.length];item.append(swatch,document.createTextNode(sideLabel(side)||'All sets'));$('legend').append(item);}
+  $('chart').append(graph);
 }
 function startProgress(data){
   const all=rowsOf(data),names=maps(data);$('progressEmpty').hidden=all.length>0;$('dashboard').hidden=!all.length;if(!all.length)return;
@@ -169,13 +215,17 @@ function startRecords(data){
 }
 function drawStrengthGraph(days,unit){
   const values=days.flatMap(day=>[day.estimate?.value,day.actualPR?.value]).filter(v=>Number.isFinite(v));if(!values.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No estimates or one-rep sets recorded for these dates.';return empty;}
-  const svg=svgElement('svg',{viewBox:'0 0 940 340',role:'img','aria-label':`Estimated and actual one-rep max in ${unit}.`}),dates=days.map(d=>Date.parse(d.date+'T00:00:00Z')),min=Math.min(...dates),max=Math.max(...dates),axis=niceAxis(Math.max(...values));
-  const x=day=>min===max?475:70+(Date.parse(day.date+'T00:00:00Z')-min)/(max-min)*810,y=value=>285-value/axis.top*240;
-  for(const tick of axis.ticks){const yy=285-tick/axis.top*240;svg.append(svgElement('line',{x1:70,x2:880,y1:yy,y2:yy,stroke:'#dfe5e8'}));svg.append(svgElement('text',{x:58,y:yy+5,'text-anchor':'end',fill:'#65747d','font-size':14},String(tick)));}
-  let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimate){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimate.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
-  svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));
-  for(const day of days){if(day.estimate)svg.append(svgElement('circle',{cx:x(day),cy:y(day.estimate.value),r:5,fill:'#087e92'}));if(day.actualPR)svg.append(svgElement('circle',{cx:x(day),cy:y(day.actualPR.value),r:5,fill:'#555'}));}
-  return svg;
+  const dates=days.map(d=>Date.parse(d.date+'T00:00:00Z')),min=Math.min(...dates),max=Math.max(...dates),axis=niceAxis(Math.max(...values));
+  return interactiveGraph(`Estimated and actual one-rep max in ${unit}.`,(svg,width,point)=>{
+    const x=day=>min===max?(52+width-24)/2:52+(Date.parse(day.date+'T00:00:00Z')-min)/(max-min)*(width-76),y=value=>275-value/axis.top*240;
+    graphAxes(svg,width,axis);
+    let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimate){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimate.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
+    svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));
+    for(const day of days){
+      if(day.estimate)point(x(day),y(day.estimate.value),'#087e92',[prettyDate(day.date),`Estimated 1RM: ${maxText(day.estimate.value,unit)}`,sourceText(day.estimate,true)]);
+      if(day.actualPR)point(x(day),y(day.actualPR.value),'#555',[prettyDate(day.date),`Actual 1RM PR: ${maxText(day.actualPR.value,unit)}`,`Set from ${day.actualPR.row.date}: ${sourceText(day.actualPR)}`]);
+    }
+  });
 }
 function renderStrengthCharts(groups,names,unit,from='',to=''){
   const root=$('strengthCharts');root.replaceChildren();let count=0;
