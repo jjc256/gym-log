@@ -9,7 +9,7 @@
       "sets": [
         {"id":"e156b76d-59c5-4f26-b7eb-299d03e16fb2","load":140,"unit":"lb","reps":8,"kind":"warmup"},
         {"id":"a96c74d9-65a2-4840-8c09-e16a075a9e5d","load":180,"unit":"lb","reps":8,"rir":2},
-        {"id":"2064b714-2c78-4ddc-b4e9-2c8d3f06e9e3","load":190,"unit":"lb","reps":5,"rir":0}
+        {"id":"2064b714-2c78-4ddc-b4e9-2c8d3f06e9e3","load":190,"unit":"lb","reps":6,"rir":0}
       ]
     }
   ]
