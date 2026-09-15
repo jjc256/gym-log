@@ -25,6 +25,14 @@
       "sets": [
         {"id":"5a1f1b19-b516-4886-9c7c-6cb1cf94ca62","load":60,"unit":"lb","reps":4,"rir":1}
       ]
+    },
+    {
+      "exercise": "bicep-curl",
+      "equipment": "bicep-curl-machine",
+      "sets": [
+        {"id":"5811c75d-e737-42bc-ab23-d4010463f4ae","load":50,"unit":"lb","reps":6,"rir":2},
+        {"id":"880bfc5c-2d2f-4421-af3d-c93343ea2bfa","load":55,"unit":"lb","reps":6,"rir":0}
+      ]
     }
   ]
 }
