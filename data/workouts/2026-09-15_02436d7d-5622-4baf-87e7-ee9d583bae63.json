@@ -11,6 +11,13 @@
         {"id":"a96c74d9-65a2-4840-8c09-e16a075a9e5d","load":180,"unit":"lb","reps":8,"rir":2},
         {"id":"2064b714-2c78-4ddc-b4e9-2c8d3f06e9e3","load":190,"unit":"lb","reps":6,"rir":0}
       ]
+    },
+    {
+      "exercise": "pull-up",
+      "sets": [
+        {"id":"6a621917-d8e7-4a42-96c9-884fe80fcb94","reps":10,"rir":1},
+        {"id":"a1ba5e84-8637-4ef4-af24-70de63c8f818","reps":10,"rir":0}
+      ]
     }
   ]
 }
