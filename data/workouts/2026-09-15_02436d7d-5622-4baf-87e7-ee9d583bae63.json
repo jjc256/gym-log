@@ -18,6 +18,13 @@
         {"id":"6a621917-d8e7-4a42-96c9-884fe80fcb94","reps":10,"rir":1},
         {"id":"a1ba5e84-8637-4ef4-af24-70de63c8f818","reps":10,"rir":0}
       ]
+    },
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "dumbbell",
+      "sets": [
+        {"id":"5a1f1b19-b516-4886-9c7c-6cb1cf94ca62","load":60,"unit":"lb","reps":4,"rir":1}
+      ]
     }
   ]
 }
