@@ -27,7 +27,7 @@
       ]
     },
     {
-      "exercise": "bicep-curl",
+      "exercise": "preacher-curl",
       "equipment": "bicep-curl-machine",
       "sets": [
         {"id":"5811c75d-e737-42bc-ab23-d4010463f4ae","load":50,"unit":"lb","reps":6,"rir":2},
