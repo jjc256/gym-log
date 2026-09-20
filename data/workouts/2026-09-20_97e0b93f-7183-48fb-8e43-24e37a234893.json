@@ -18,6 +18,7 @@
       "equipment": "smith-machine",
       "sets": [
         {"id":"6f9d25de-725c-4b3b-8350-c5ff59fd474a","load":85,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"a4f45740-48b8-4b91-843c-13c31024e4d7","load":155,"unit":"lb","reps":1,"rir":1},
         {"id":"97d02dc5-d119-464d-8d48-fb2ad16a519c","load":125,"unit":"lb","reps":6,"rir":1},
         {"id":"2b7f376d-d23f-482e-872a-8a5b8332499e","load":135,"unit":"lb","reps":4,"rir":0}
       ]
