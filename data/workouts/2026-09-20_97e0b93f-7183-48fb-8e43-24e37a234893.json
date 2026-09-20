@@ -12,6 +12,15 @@
         {"id":"4c7fdaa6-121d-4a42-8b3c-8d376983eb6f","load":40,"unit":"lb","reps":6,"rir":1,"side":"right"},
         {"id":"61b81922-9f9e-4a81-bef9-b913be0c098b","load":40,"unit":"lb","reps":10,"rir":1,"side":"left"}
       ]
+    },
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "smith-machine",
+      "sets": [
+        {"id":"6f9d25de-725c-4b3b-8350-c5ff59fd474a","load":85,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"97d02dc5-d119-464d-8d48-fb2ad16a519c","load":125,"unit":"lb","reps":6,"rir":1},
+        {"id":"2b7f376d-d23f-482e-872a-8a5b8332499e","load":135,"unit":"lb","reps":4,"rir":0}
+      ]
     }
   ]
 }
