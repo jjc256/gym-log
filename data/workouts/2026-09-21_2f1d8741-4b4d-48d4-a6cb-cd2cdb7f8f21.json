@@ -28,6 +28,19 @@
         {"id":"9ef49faf-854c-4a23-a8a4-6346757722aa","load":70,"unit":"lb","reps":8,"rir":1},
         {"id":"f90efc8e-2532-41da-a713-05cfb1d1b27a","load":75,"unit":"lb","reps":2,"rir":0}
       ]
+    },
+    {
+      "exercise": "pull-up",
+      "sets": [
+        {"id":"c8ab82ee-8685-4d14-9b61-71a3998858da","reps":10,"rir":3}
+      ]
+    },
+    {
+      "exercise": "muscle-up",
+      "sets": [
+        {"id":"17d37be0-51b9-43db-b5fa-9f8ac01daf48","reps":1,"rir":1},
+        {"id":"f194745b-7fc0-4d04-b5c4-d6f71bbfb2e1","reps":1,"rir":1}
+      ]
     }
   ]
 }
