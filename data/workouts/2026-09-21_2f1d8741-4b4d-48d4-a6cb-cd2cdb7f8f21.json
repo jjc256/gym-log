@@ -19,6 +19,15 @@
         {"id":"8a98a2d9-2f55-4f39-b01d-c58afab4de27","load":125,"unit":"lb","reps":6,"rir":1},
         {"id":"b58167c3-a42f-4f3f-a71f-d08e07c60870","load":125,"unit":"lb","reps":7,"rir":0}
       ]
+    },
+    {
+      "exercise": "tricep-extension",
+      "equipment": "tricep-extension-machine",
+      "sets": [
+        {"id":"4e6f792f-e6d2-4db5-a969-c39c58d7f20b","load":60,"unit":"lb","reps":8,"kind":"warmup"},
+        {"id":"9ef49faf-854c-4a23-a8a4-6346757722aa","load":70,"unit":"lb","reps":8,"rir":1},
+        {"id":"f90efc8e-2532-41da-a713-05cfb1d1b27a","load":75,"unit":"lb","reps":2,"rir":0}
+      ]
     }
   ]
 }
