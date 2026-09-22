@@ -9,7 +9,8 @@
       "sets": [
         {"id":"3bd3b2ec-8c95-4e10-980d-2e9dca9df4c4","load":130,"unit":"lb","reps":10,"kind":"warmup"},
         {"id":"af352bfb-4574-49cf-b55d-311692d34ae0","load":130,"unit":"lb","reps":8,"notes":"fast twitch"},
-        {"id":"c81847e7-c51a-469d-955c-594e79fb54c7","load":190,"unit":"lb","reps":10,"rir":3}
+        {"id":"c81847e7-c51a-469d-955c-594e79fb54c7","load":190,"unit":"lb","reps":10,"rir":3},
+        {"id":"7366e3f8-4d45-4ca5-a138-bcdcb5e407ac","load":205,"unit":"lb","reps":8,"rir":2}
       ]
     }
   ]
