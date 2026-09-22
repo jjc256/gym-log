@@ -21,6 +21,14 @@
         {"id":"ebf22e88-4b74-4f6c-b2d2-c20c0540d20e","load":150,"unit":"lb","reps":6,"rir":1},
         {"id":"fc3f95e7-c486-438d-aafd-f6084516e04b","load":150,"unit":"lb","reps":6,"rir":2}
       ]
+    },
+    {
+      "exercise": "abdominal-crunch",
+      "equipment": "abdominal-crunch-machine",
+      "sets": [
+        {"id":"b73072c5-bb46-4c51-bd8c-b9c5d74fc24d","load":90,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"43c2ce1d-746c-4740-81e5-355845865eda","load":120,"unit":"lb","reps":7,"rir":2}
+      ]
     }
   ]
 }
