@@ -1,0 +1,16 @@
+{
+  "id": "4a03a0f8-6d5d-4d16-9e5c-9c0a2a8f6a22",
+  "date": "2026-09-22",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "leg-press",
+      "equipment": "leg-press-machine",
+      "sets": [
+        {"id":"3bd3b2ec-8c95-4e10-980d-2e9dca9df4c4","load":130,"unit":"lb","reps":10,"kind":"warmup"},
+        {"id":"af352bfb-4574-49cf-b55d-311692d34ae0","load":130,"unit":"lb","reps":8,"notes":"fast twitch"},
+        {"id":"c81847e7-c51a-469d-955c-594e79fb54c7","load":190,"unit":"lb","reps":10,"rir":3}
+      ]
+    }
+  ]
+}
