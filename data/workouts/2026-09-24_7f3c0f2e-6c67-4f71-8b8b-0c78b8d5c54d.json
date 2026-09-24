@@ -11,6 +11,14 @@
         {"id":"c875eeda-e19c-4212-9003-6fa246c0c5f6","load":190,"unit":"lb","reps":6,"rir":0},
         {"id":"90d5e3ac-14dd-4f30-9067-ef9c23020f42","load":190,"unit":"lb","reps":7,"rir":0}
       ]
+    },
+    {
+      "exercise": "pull-up",
+      "equipment": "bodyweight",
+      "sets": [
+        {"id":"2e104c6c-9ee0-4f64-b7c8-19c87a8fbec1","reps":10,"rir":1},
+        {"id":"9d4f13e2-82bc-4b5d-86ec-76b348163e66","reps":9,"rir":0}
+      ]
     }
   ]
 }
