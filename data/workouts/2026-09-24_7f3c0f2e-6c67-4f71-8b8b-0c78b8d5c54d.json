@@ -1,0 +1,16 @@
+{
+  "id": "7f3c0f2e-6c67-4f71-8b8b-0c78b8d5c54d",
+  "date": "2026-09-24",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "chest-press",
+      "equipment": "chest-press-machine",
+      "sets": [
+        {"id":"5bca0a76-6b89-44cf-9455-3aa7f825e638","load":140,"unit":"lb","reps":5,"kind":"warmup"},
+        {"id":"c875eeda-e19c-4212-9003-6fa246c0c5f6","load":190,"unit":"lb","reps":6,"rir":0},
+        {"id":"90d5e3ac-14dd-4f30-9067-ef9c23020f42","load":190,"unit":"lb","reps":7,"rir":0}
+      ]
+    }
+  ]
+}
