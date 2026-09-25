@@ -219,7 +219,7 @@ function drawStrengthGraph(days,unit){
   return interactiveGraph(`Estimated and actual one-rep max in ${unit}.`,(svg,width,point)=>{
     const x=day=>min===max?(52+width-24)/2:52+(Date.parse(day.date+'T00:00:00Z')-min)/(max-min)*(width-76),y=value=>275-value/axis.top*240;
     graphAxes(svg,width,axis);
-    let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimatePR){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimatePR.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
+    let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimatePR){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimatePR.value)} `;was=true;}if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
     svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));
     for(const day of days){
       if(day.estimatePR)point(x(day),y(day.estimatePR.value),'#087e92',[prettyDate(day.date),`Estimated 1RM: ${maxText(day.estimatePR.value,unit)}`,sourceText(day.estimatePR,true)]);
