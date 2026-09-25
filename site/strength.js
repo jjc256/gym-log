@@ -51,8 +51,12 @@ function strengthSeries(rows, unit = 'lb') {
     let actualPR = null, bestEstimate = null;
     const days = [...group.days.values()].sort((a,b)=>a.date.localeCompare(b.date)).map(day => {
       if (day.actual && (!actualPR || day.actual.value > actualPR.value)) actualPR = day.actual;
-      if (day.estimate && (!bestEstimate || day.estimate.value > bestEstimate.value)) bestEstimate = day.estimate;
-      return {...day, actualPR};
+      let estimatePR = null;
+      if (day.estimate && (!bestEstimate || day.estimate.value > bestEstimate.value)) {
+        bestEstimate = day.estimate;
+        estimatePR = day.estimate;
+      }
+      return {...day, estimatePR, actualPR};
     });
     return {...group, days, bestEstimate, actualPR};
   }).sort((a,b)=>a.key.localeCompare(b.key));
