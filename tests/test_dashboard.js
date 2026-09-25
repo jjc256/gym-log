@@ -36,6 +36,15 @@ const noEffort=strengthSeries([
 ])[0];
 assert.equal(noEffort.days[0].estimate.row.id,'effort');
 
+const increasing=strengthSeries([
+  {...base,id:'inc-a',workout:'w-inc-a',date:'2026-09-01',load:100,reps:8,rir:2},
+  {...base,id:'inc-b',workout:'w-inc-b',date:'2026-09-02',load:95,reps:8,rir:2},
+  {...base,id:'inc-c',workout:'w-inc-c',date:'2026-09-03',load:100,reps:8,rir:2},
+  {...base,id:'inc-d',workout:'w-inc-d',date:'2026-09-04',load:105,reps:8,rir:2}
+])[0];
+assert.deepEqual(increasing.days.map(day=>day.estimatePR?.row.id||null),['inc-a',null,null,'inc-d']);
+assert.ok(increasing.days.filter(day=>day.estimatePR).every((day,i,list)=>i===0||day.estimatePR.value>list[i-1].estimatePR.value));
+
 assert.equal(recordSeries([{...base,reps:1,rir:undefined},{...base,id:'l',workout:'wl',side:'left',reps:1,rir:undefined}]).length,2);
 
 const workout=(date,kinds)=>({date,exercises:[{sets:kinds.map(kind=>({kind}))}]});
