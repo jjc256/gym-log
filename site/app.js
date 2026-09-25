@@ -214,22 +214,22 @@ function startRecords(data){
   $('recordUnit').addEventListener('change',render);render();
 }
 function drawStrengthGraph(days,unit){
-  const values=days.flatMap(day=>[day.estimate?.value,day.actualPR?.value]).filter(v=>Number.isFinite(v));if(!values.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No estimates or one-rep sets recorded for these dates.';return empty;}
+  const values=days.flatMap(day=>[day.estimatePR?.value,day.actualPR?.value]).filter(v=>Number.isFinite(v));if(!values.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='No estimates or one-rep sets recorded for these dates.';return empty;}
   const dates=days.map(d=>Date.parse(d.date+'T00:00:00Z')),min=Math.min(...dates),max=Math.max(...dates),axis=niceAxis(Math.max(...values));
   return interactiveGraph(`Estimated and actual one-rep max in ${unit}.`,(svg,width,point)=>{
     const x=day=>min===max?(52+width-24)/2:52+(Date.parse(day.date+'T00:00:00Z')-min)/(max-min)*(width-76),y=value=>275-value/axis.top*240;
     graphAxes(svg,width,axis);
-    let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimate){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimate.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
+    let estimatePath='',was=false,actualPath='',previous=null;for(const day of days){if(day.estimatePR){estimatePath+=`${was?'L':'M'}${x(day)},${y(day.estimatePR.value)} `;was=true;}else was=false;if(day.actualPR){actualPath+=previous===null?`M${x(day)},${y(day.actualPR.value)} `:`H${x(day)} V${y(day.actualPR.value)} `;previous=day.actualPR;}}
     svg.append(svgElement('path',{d:estimatePath,fill:'none',stroke:'#087e92','stroke-width':2.5}));svg.append(svgElement('path',{d:actualPath,fill:'none',stroke:'#555','stroke-width':2,'stroke-dasharray':'7 5'}));
     for(const day of days){
-      if(day.estimate)point(x(day),y(day.estimate.value),'#087e92',[prettyDate(day.date),`Estimated 1RM: ${maxText(day.estimate.value,unit)}`,sourceText(day.estimate,true)]);
+      if(day.estimatePR)point(x(day),y(day.estimatePR.value),'#087e92',[prettyDate(day.date),`Estimated 1RM: ${maxText(day.estimatePR.value,unit)}`,sourceText(day.estimatePR,true)]);
       if(day.actualPR)point(x(day),y(day.actualPR.value),'#555',[prettyDate(day.date),`Actual 1RM PR: ${maxText(day.actualPR.value,unit)}`,`Set from ${day.actualPR.row.date}: ${sourceText(day.actualPR)}`]);
     }
   });
 }
 function renderStrengthCharts(groups,names,unit,from='',to=''){
   const root=$('strengthCharts');root.replaceChildren();let count=0;
-  for(const group of groups){const days=group.days.filter(day=>(!from||day.date>=from)&&(!to||day.date<=to));if(!days.some(day=>day.estimate||day.actualPR))continue;count++;
+  for(const group of groups){const days=group.days.filter(day=>(!from||day.date>=from)&&(!to||day.date<=to));if(!days.some(day=>day.estimatePR||day.actualPR))continue;count++;
     const card=document.createElement('article');card.className='strength-card';const title=document.createElement('h3');title.textContent=[exactLabel(group.row,names),sideLabel(group.row.side)].filter(Boolean).join(' · ');card.append(title);
     const chart=document.createElement('div');chart.className='strength-chart';chart.append(drawStrengthGraph(days,unit));card.append(chart);root.append(card);}
   if(!count)root.textContent='No load-based strength data for these dates.';
