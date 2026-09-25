@@ -7,9 +7,54 @@
       "exercise": "overhead-press",
       "equipment": "overhead-press-machine",
       "sets": [
-        {"id":"44b17369-0e8c-455f-a98c-85e57e5d67d2","load":80,"unit":"lb","reps":6,"kind":"warmup"},
-        {"id":"07a25a8d-d3a5-4ea8-a48b-10aef2018b5c","load":110,"unit":"lb","reps":8,"rir":3},
-        {"id":"115418f9-0fb4-4db2-8d5d-02c83bb826c1","load":120,"unit":"lb","reps":7,"rir":2}
+        {
+          "id": "44b17369-0e8c-455f-a98c-85e57e5d67d2",
+          "load": 80,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "07a25a8d-d3a5-4ea8-a48b-10aef2018b5c",
+          "load": 110,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 3
+        },
+        {
+          "id": "115418f9-0fb4-4db2-8d5d-02c83bb826c1",
+          "load": 120,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        }
+      ]
+    },
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "c51aa743-cf57-4de8-a984-88cd8bb40b6b",
+          "load": 140,
+          "unit": "lb",
+          "reps": 8,
+          "kind": "warmup"
+        },
+        {
+          "id": "9b74413e-4d0e-4d19-a9ef-ef946d3c77f8",
+          "load": 200,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        },
+        {
+          "id": "05f1c460-98e2-46f9-9c26-706846faf7fc",
+          "load": 200,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1
+        }
       ]
     }
   ]
