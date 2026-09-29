@@ -98,6 +98,60 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "preacher-curl",
+      "equipment": "dumbbell",
+      "sets": [
+        {
+          "id": "5ff79688-2e83-45f4-9213-20f674834cd0",
+          "load": 20,
+          "unit": "lb",
+          "reps": 8,
+          "side": "left",
+          "kind": "warmup"
+        },
+        {
+          "id": "d60708c7-1fea-476f-aef5-a9825c063320",
+          "load": 20,
+          "unit": "lb",
+          "reps": 8,
+          "side": "right",
+          "kind": "warmup"
+        },
+        {
+          "id": "e7eb637d-4ee1-42ec-a8db-f2da42cf6c83",
+          "load": 25,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1,
+          "side": "right"
+        },
+        {
+          "id": "87b949af-933e-4e0c-af1d-62c9fa4e3a5b",
+          "load": 25,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0,
+          "side": "left"
+        },
+        {
+          "id": "e8402c3b-776f-4428-9501-e993662e41c9",
+          "load": 25,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1,
+          "side": "left"
+        },
+        {
+          "id": "78a25731-6c8b-42a7-b34a-47de6509f720",
+          "load": 25,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1,
+          "side": "right"
+        }
+      ]
     }
   ]
 }
