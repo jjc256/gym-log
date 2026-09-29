@@ -80,6 +80,22 @@
           "reps": 7,
           "rir": 2,
           "side": "left"
+        },
+        {
+          "id": "6e045b84-6dd4-4a54-9ac6-b9be70572b26",
+          "load": 40,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1,
+          "side": "right"
+        },
+        {
+          "id": "0263bc36-21cc-46dc-88f8-c8d288b50f7c",
+          "load": 40,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0,
+          "side": "left"
         }
       ]
     }
