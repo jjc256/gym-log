@@ -17,7 +17,7 @@
       "exercise": "leg-curl",
       "equipment": "leg-curl-machine",
       "sets": [
-        {"id":"937829f5-7130-4fca-a7a2-79ce3c20cb93","load":100,"unit":"lb","reps":10},
+        {"id":"937829f5-7130-4fca-a7a2-79ce3c20cb93","load":100,"unit":"lb","reps":10,"kind":"warmup"},
         {"id":"ebf22e88-4b74-4f6c-b2d2-c20c0540d20e","load":150,"unit":"lb","reps":6,"rir":1},
         {"id":"fc3f95e7-c486-438d-aafd-f6084516e04b","load":150,"unit":"lb","reps":6,"rir":2}
       ]
