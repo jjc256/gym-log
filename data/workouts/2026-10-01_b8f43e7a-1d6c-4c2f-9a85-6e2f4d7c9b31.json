@@ -8,26 +8,94 @@
       "equipment": "leg-press-machine",
       "notes": "Failed attempts: 220 lb x2, 212.5 lb, 205 lb, 197.5 lb, 190 lb.",
       "sets": [
-        {"id":"4a8c73f1-5d2e-4b9a-8f60-1c3e7d5a92b4","load":145,"unit":"lb","reps":6,"kind":"warmup"},
-        {"id":"9f2b6d41-7a85-4c3e-b1d9-5e8a2f6c73d0","load":130,"unit":"lb","reps":8,"notes":"fast twitch"},
-        {"id":"2d7e5a90-3c61-4f8b-a274-9b6d1e5c83f7","load":182.5,"unit":"lb","reps":5,"rir":3}
+        {
+          "id": "4a8c73f1-5d2e-4b9a-8f60-1c3e7d5a92b4",
+          "load": 145,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "9f2b6d41-7a85-4c3e-b1d9-5e8a2f6c73d0",
+          "load": 130,
+          "unit": "lb",
+          "reps": 8,
+          "notes": "fast twitch"
+        },
+        {
+          "id": "2d7e5a90-3c61-4f8b-a274-9b6d1e5c83f7",
+          "load": 182.5,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 3
+        }
       ]
     },
     {
       "exercise": "leg-curl",
       "equipment": "leg-curl-machine",
       "sets": [
-        {"id":"6c4e2a91-8b35-4d7f-a260-1e9c5b7d3f84","load":100,"unit":"lb","reps":10,"kind":"warmup"},
-        {"id":"1f7a3c58-9d42-4b6e-8a15-2c5d7e9f3041","load":160,"unit":"lb","reps":6,"rir":1},
-        {"id":"8d2b5f46-3a79-4c1e-b650-7f9a2d5c8134","load":160,"unit":"lb","reps":5,"rir":1}
+        {
+          "id": "6c4e2a91-8b35-4d7f-a260-1e9c5b7d3f84",
+          "load": 100,
+          "unit": "lb",
+          "reps": 10,
+          "kind": "warmup"
+        },
+        {
+          "id": "1f7a3c58-9d42-4b6e-8a15-2c5d7e9f3041",
+          "load": 160,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        },
+        {
+          "id": "8d2b5f46-3a79-4c1e-b650-7f9a2d5c8134",
+          "load": 160,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1
+        }
       ]
     },
     {
       "exercise": "hip-adduction",
       "equipment": "hip-adduction-abduction-machine",
       "sets": [
-        {"id":"7c93e2a1-4b68-4f15-a2d9-6e1c8b5f3047","load":80,"unit":"lb","reps":6,"kind":"warmup"},
-        {"id":"3a5f8c21-9d74-4e6b-b130-2c7e5a9f8642","load":90,"unit":"lb","reps":8,"rir":3}
+        {
+          "id": "7c93e2a1-4b68-4f15-a2d9-6e1c8b5f3047",
+          "load": 80,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "3a5f8c21-9d74-4e6b-b130-2c7e5a9f8642",
+          "load": 90,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 3
+        }
+      ]
+    },
+    {
+      "exercise": "abdominal-crunch",
+      "equipment": "abdominal-crunch-machine",
+      "sets": [
+        {
+          "id": "5e4c1a27-8d63-4b90-a215-7f3c9e6d1428",
+          "load": 80,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "9a2f6c41-3d75-4e8b-b160-5c7d1a9f2843",
+          "load": 125,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1
+        }
       ]
     }
   ]
