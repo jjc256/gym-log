@@ -1,0 +1,17 @@
+{
+  "id": "b8f43e7a-1d6c-4c2f-9a85-6e2f4d7c9b31",
+  "date": "2026-10-01",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "leg-press",
+      "equipment": "leg-press-machine",
+      "notes": "Failed attempts: 220 lb x2, 212.5 lb, 205 lb, 197.5 lb, 190 lb.",
+      "sets": [
+        {"id":"4a8c73f1-5d2e-4b9a-8f60-1c3e7d5a92b4","load":145,"unit":"lb","reps":6,"kind":"warmup"},
+        {"id":"9f2b6d41-7a85-4c3e-b1d9-5e8a2f6c73d0","load":130,"unit":"lb","reps":8,"notes":"fast twitch"},
+        {"id":"2d7e5a90-3c61-4f8b-a274-9b6d1e5c83f7","load":182.5,"unit":"lb","reps":5,"rir":3}
+      ]
+    }
+  ]
+}
