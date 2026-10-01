@@ -12,6 +12,15 @@
         {"id":"9f2b6d41-7a85-4c3e-b1d9-5e8a2f6c73d0","load":130,"unit":"lb","reps":8,"notes":"fast twitch"},
         {"id":"2d7e5a90-3c61-4f8b-a274-9b6d1e5c83f7","load":182.5,"unit":"lb","reps":5,"rir":3}
       ]
+    },
+    {
+      "exercise": "leg-curl",
+      "equipment": "leg-curl-machine",
+      "sets": [
+        {"id":"6c4e2a91-8b35-4d7f-a260-1e9c5b7d3f84","load":100,"unit":"lb","reps":10,"kind":"warmup"},
+        {"id":"1f7a3c58-9d42-4b6e-8a15-2c5d7e9f3041","load":160,"unit":"lb","reps":6,"rir":1},
+        {"id":"8d2b5f46-3a79-4c1e-b650-7f9a2d5c8134","load":160,"unit":"lb","reps":5,"rir":1}
+      ]
     }
   ]
 }
