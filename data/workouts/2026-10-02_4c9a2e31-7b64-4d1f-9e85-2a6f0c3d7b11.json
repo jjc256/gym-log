@@ -22,6 +22,26 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "tricep-extension",
+      "equipment": "machine",
+      "sets": [
+        {
+          "id": "5d3a91c4-7b2e-4f68-8a10-3e6c9b4d2f71",
+          "load": 50,
+          "unit": "lb",
+          "reps": 8,
+          "kind": "warmup"
+        },
+        {
+          "id": "9a4c2f17-6e8b-43d1-b5f0-2c7a9e6d3b84",
+          "load": 70,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
