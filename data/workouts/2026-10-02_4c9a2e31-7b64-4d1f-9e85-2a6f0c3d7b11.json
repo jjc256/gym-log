@@ -1,0 +1,27 @@
+{
+  "id": "4c9a2e31-7b64-4d1f-9e85-2a6f0c3d7b11",
+  "date": "2026-10-02",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "smith-machine",
+      "sets": [
+        {
+          "id": "8f2a6c11-3d7b-4e90-a152-6c4d9f1b2e73",
+          "load": 135,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 0
+        },
+        {
+          "id": "1b7d4e92-6c3a-45f8-9d21-0e5a7b6c4f13",
+          "load": 135,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
