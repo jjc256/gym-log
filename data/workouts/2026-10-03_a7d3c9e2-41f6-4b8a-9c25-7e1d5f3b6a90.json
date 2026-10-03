@@ -1,0 +1,18 @@
+{
+  "id": "a7d3c9e2-41f6-4b8a-9c25-7e1d5f3b6a90",
+  "date": "2026-10-03",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "pull-up",
+      "equipment": "bodyweight",
+      "sets": [
+        {
+          "id": "c4f8a1d7-6b23-4e95-8a10-2d7c5f9b3e61",
+          "reps": 14,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
