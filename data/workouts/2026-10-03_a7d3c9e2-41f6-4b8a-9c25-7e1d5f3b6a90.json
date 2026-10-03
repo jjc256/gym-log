@@ -67,6 +67,19 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "chest-press",
+      "equipment": "machine",
+      "sets": [
+        {
+          "id": "8a27d9c1-2e31-4a74-9c5e-1f6b3d8a0427",
+          "load": 200,
+          "unit": "lb",
+          "reps": 4,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
