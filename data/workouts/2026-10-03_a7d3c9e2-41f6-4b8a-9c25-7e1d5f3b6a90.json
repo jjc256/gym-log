@@ -13,6 +13,60 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "rear-delt-fly",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "3d0dcb67-4776-4fb7-b9cf-1880d8f5a902",
+          "load": 20,
+          "unit": "lb",
+          "reps": 7,
+          "side": "left",
+          "kind": "warmup"
+        },
+        {
+          "id": "49fe8a5a-7d4d-4f13-970b-47db1235a61a",
+          "load": 20,
+          "unit": "lb",
+          "reps": 7,
+          "side": "right",
+          "kind": "warmup"
+        },
+        {
+          "id": "6f5ea823-9918-480d-8759-9d61a2fe5dd3",
+          "load": 30,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 3,
+          "side": "right"
+        },
+        {
+          "id": "069a3297-fce2-47ea-8e60-66f715b2fd48",
+          "load": 30,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2,
+          "side": "left"
+        },
+        {
+          "id": "b6589edb-c2bc-45c4-b15e-4a301c48aeb0",
+          "load": 35,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "34d9fe5a-7742-4497-95c3-a93281a30a74",
+          "load": 35,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
     }
   ]
 }
