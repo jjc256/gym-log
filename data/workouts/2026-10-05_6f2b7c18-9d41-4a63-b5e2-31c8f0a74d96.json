@@ -56,6 +56,33 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "preacher-curl",
+      "equipment": "bicep-curl-machine",
+      "sets": [
+        {
+          "id": "4a8d1c63-75e2-4b90-9f31-6c2e7d5a184b",
+          "load": 40,
+          "unit": "lb",
+          "reps": 8,
+          "kind": "warmup"
+        },
+        {
+          "id": "8c3f6a21-d947-45b8-a1e0-5f2c7d9b364e",
+          "load": 55,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1
+        },
+        {
+          "id": "1e7b4d90-c362-4f85-9a2d-6b8c31f7e542",
+          "load": 55,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
