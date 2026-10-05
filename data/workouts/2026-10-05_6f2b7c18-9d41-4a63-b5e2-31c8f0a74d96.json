@@ -1,0 +1,61 @@
+{
+  "id": "6f2b7c18-9d41-4a63-b5e2-31c8f0a74d96",
+  "date": "2026-10-05",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "lateral-raise",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "1d6a3c92-8f45-4b71-a2e0-5c9d7f13b684",
+          "load": 30,
+          "unit": "lb",
+          "reps": 7,
+          "side": "left",
+          "kind": "warmup"
+        },
+        {
+          "id": "7b4e2a61-c9d3-45f8-91a6-2e5c0b73d184",
+          "load": 30,
+          "unit": "lb",
+          "reps": 7,
+          "side": "right",
+          "kind": "warmup"
+        },
+        {
+          "id": "3c8f1d72-a6b4-49e5-82d0-7f2a91c6b843",
+          "load": 40,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1,
+          "side": "right"
+        },
+        {
+          "id": "9a2d6f41-b7c8-4e30-95f1-3d8a62c7e514",
+          "load": 40,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 2,
+          "side": "left"
+        },
+        {
+          "id": "5e1c8a73-d294-46b0-a7f5-81c3d6e29b47",
+          "load": 40,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 0,
+          "side": "right"
+        },
+        {
+          "id": "2f7b4d90-c163-4a85-8e2d-6b9c31f7a542",
+          "load": 40,
+          "unit": "lb",
+          "reps": 15,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
+    }
+  ]
+}
