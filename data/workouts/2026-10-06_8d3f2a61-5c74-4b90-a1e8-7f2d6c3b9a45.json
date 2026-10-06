@@ -29,6 +29,33 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "overhead-press",
+      "equipment": "machine",
+      "sets": [
+        {
+          "id": "3e8b1f64-a2c7-4d95-9b30-6f1a5c7e2d84",
+          "load": 105,
+          "unit": "lb",
+          "reps": 8,
+          "kind": "warmup"
+        },
+        {
+          "id": "7a4d2c91-e6b3-4f80-8c15-2d9e5b7a1f63",
+          "load": 125,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1
+        },
+        {
+          "id": "5c9e3a72-b1d6-48f4-9a20-7e2c6d1b8f53",
+          "load": 125,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
