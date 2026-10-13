@@ -56,6 +56,19 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "smith-machine",
+      "sets": [
+        {
+          "id": "7d6c5b4a-3210-4f98-a765-01bed483ce29",
+          "load": 135,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
