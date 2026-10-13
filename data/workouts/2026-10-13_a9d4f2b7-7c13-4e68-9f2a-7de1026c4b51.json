@@ -69,6 +69,33 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "pec-fly",
+      "equipment": "rear-delt-pec-fly-machine",
+      "sets": [
+        {
+          "id": "1820b971-801b-4abd-9e12-f376ab930101",
+          "load": 70,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "1820b971-801b-4abd-9e12-f376ab930102",
+          "load": 140,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        },
+        {
+          "id": "1820b971-801b-4abd-9e12-f376ab930103",
+          "load": 140,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
