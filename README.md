@@ -57,3 +57,7 @@ python scripts/gymlog.py build
 python -m unittest tests/test_gymlog.py
 node tests/test_dashboard.js
 ```
+
+## Deployment troubleshooting
+
+GitHub Pages expects a single `github-pages` artifact per workflow run. Re-running the build job within an existing run can leave multiple same-named artifacts and cause `actions/deploy-pages` to fail. In that case, start a fresh workflow run with a new commit instead of retrying the build job in the original run.
