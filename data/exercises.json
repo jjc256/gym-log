@@ -1,17 +1,115 @@
 [
-  {"id":"leg-press","name":"Leg press","aliases":[]},
-  {"id":"hip-adduction","name":"Hip adduction","aliases":[]},
-  {"id":"leg-curl","name":"Leg curl","aliases":[]},
-  {"id":"abdominal-crunch","name":"Abdominal crunch","aliases":["abdominal crunches"]},
-  {"id":"preacher-curl","name":"Preacher curl","aliases":["preacher curls"]},
-  {"id":"hammer-curl","name":"Hammer curl","aliases":["hammer curls"]},
-  {"id":"incline-bench-press","name":"Incline bench press","aliases":["incline dumbbell bench press","incline db bench"]},
-  {"id":"lateral-raise","name":"Lateral raise","aliases":["lateral raises","cable lateral raise","cable lateral raises"]},
-  {"id":"pull-up","name":"Pull-up","aliases":["pull ups","pull-ups"]},
-  {"id":"muscle-up","name":"Muscle-up","aliases":["muscle ups","muscle-ups"]},
-  {"id":"chest-press","name":"Chest press","aliases":["chest press machine"]},
-  {"id":"seated-row","name":"Seated row","aliases":["seated rows"]},
-  {"id":"overhead-press","name":"Overhead press","aliases":["shoulder press","machine overhead press"]},
-  {"id":"tricep-extension","name":"Tricep extension","aliases":["triceps extension","machine tricep extension"]},
-  {"id":"rear-delt-fly","name":"Rear delt fly","aliases":["rear delt flies","cable rear delt fly","cable rear delt flies"]}
+  {
+    "id": "leg-press",
+    "name": "Leg press",
+    "aliases": []
+  },
+  {
+    "id": "hip-adduction",
+    "name": "Hip adduction",
+    "aliases": []
+  },
+  {
+    "id": "leg-curl",
+    "name": "Leg curl",
+    "aliases": []
+  },
+  {
+    "id": "abdominal-crunch",
+    "name": "Abdominal crunch",
+    "aliases": [
+      "abdominal crunches"
+    ]
+  },
+  {
+    "id": "preacher-curl",
+    "name": "Preacher curl",
+    "aliases": [
+      "preacher curls"
+    ]
+  },
+  {
+    "id": "hammer-curl",
+    "name": "Hammer curl",
+    "aliases": [
+      "hammer curls"
+    ]
+  },
+  {
+    "id": "incline-bench-press",
+    "name": "Incline bench press",
+    "aliases": [
+      "incline dumbbell bench press",
+      "incline db bench"
+    ]
+  },
+  {
+    "id": "lateral-raise",
+    "name": "Lateral raise",
+    "aliases": [
+      "lateral raises",
+      "cable lateral raise",
+      "cable lateral raises"
+    ]
+  },
+  {
+    "id": "pull-up",
+    "name": "Pull-up",
+    "aliases": [
+      "pull ups",
+      "pull-ups"
+    ]
+  },
+  {
+    "id": "muscle-up",
+    "name": "Muscle-up",
+    "aliases": [
+      "muscle ups",
+      "muscle-ups"
+    ]
+  },
+  {
+    "id": "chest-press",
+    "name": "Chest press",
+    "aliases": [
+      "chest press machine"
+    ]
+  },
+  {
+    "id": "seated-row",
+    "name": "Seated row",
+    "aliases": [
+      "seated rows"
+    ]
+  },
+  {
+    "id": "overhead-press",
+    "name": "Overhead press",
+    "aliases": [
+      "shoulder press",
+      "machine overhead press"
+    ]
+  },
+  {
+    "id": "tricep-extension",
+    "name": "Tricep extension",
+    "aliases": [
+      "triceps extension",
+      "machine tricep extension"
+    ]
+  },
+  {
+    "id": "rear-delt-fly",
+    "name": "Rear delt fly",
+    "aliases": [
+      "rear delt flies",
+      "cable rear delt fly",
+      "cable rear delt flies"
+    ]
+  },
+  {
+    "id": "pec-fly",
+    "name": "Pec fly",
+    "aliases": []
+  }
 ]
