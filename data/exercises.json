@@ -111,5 +111,12 @@
     "id": "pec-fly",
     "name": "Pec fly",
     "aliases": []
+  },
+  {
+    "id": "bicep-curl",
+    "name": "Bicep curl",
+    "aliases": [
+      "dumbbell bicep curl"
+    ]
   }
 ]
