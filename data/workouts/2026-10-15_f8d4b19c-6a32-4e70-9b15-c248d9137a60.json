@@ -62,6 +62,44 @@
           "rir": 3
         }
       ]
+    },
+    {
+      "exercise": "rotator-cuff",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "e811e120-75c2-4e56-9482-29252a8e1741",
+          "load": 25,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 2,
+          "side": "left"
+        },
+        {
+          "id": "21fe7177-2d4e-497e-b39b-1b63d17211b8",
+          "load": 25,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "dcbd6f14-9dae-4420-964e-e122db4a9caa",
+          "load": 25,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 1,
+          "side": "right"
+        },
+        {
+          "id": "5fa7ac90-f6b7-4c58-965f-4d28b72a191f",
+          "load": 25,
+          "unit": "lb",
+          "reps": 12,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
     }
   ]
 }
