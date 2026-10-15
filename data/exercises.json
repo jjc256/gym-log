@@ -118,5 +118,12 @@
     "aliases": [
       "dumbbell bicep curl"
     ]
+  },
+  {
+    "id": "rotator-cuff",
+    "name": "Rotator cuff",
+    "aliases": [
+      "rotator cuff cable machine"
+    ]
   }
 ]
