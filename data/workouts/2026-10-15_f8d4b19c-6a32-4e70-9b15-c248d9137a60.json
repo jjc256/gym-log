@@ -100,6 +100,19 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "weighted-pull-up",
+      "equipment": "weight-belt",
+      "sets": [
+        {
+          "id": "4e3cbbae-4e6a-4a40-97e9-f938e6f9aaf1",
+          "load": 25,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
