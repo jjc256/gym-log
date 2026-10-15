@@ -125,5 +125,13 @@
     "aliases": [
       "rotator cuff cable machine"
     ]
+  },
+  {
+    "id": "weighted-pull-up",
+    "name": "Weighted pull-up",
+    "aliases": [
+      "weighted pull ups",
+      "weighted pull-ups"
+    ]
   }
 ]
