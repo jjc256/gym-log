@@ -1,0 +1,27 @@
+{
+  "id": "f8d4b19c-6a32-4e70-9b15-c248d9137a60",
+  "date": "2026-10-15",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "tricep-extension",
+      "equipment": "machine",
+      "sets": [
+        {
+          "id": "81c372aa-74d9-469d-b221-3242e26a74df",
+          "load": 50,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "95d2cc37-909c-49c6-8e5b-8b52d2f6c60f",
+          "load": 55,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 1
+        }
+      ]
+    }
+  ]
+}
