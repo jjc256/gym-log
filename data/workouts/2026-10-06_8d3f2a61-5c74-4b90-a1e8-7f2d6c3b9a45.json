@@ -5,7 +5,7 @@
   "exercises": [
     {
       "exercise": "tricep-extension",
-      "equipment": "machine",
+      "equipment": "tricep-extension-machine",
       "sets": [
         {
           "id": "2b7e4c91-a6d3-4f58-9c21-5e8a7d3b6f40",
