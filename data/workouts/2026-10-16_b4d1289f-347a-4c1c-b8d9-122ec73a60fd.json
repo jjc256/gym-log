@@ -29,6 +29,33 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "5c79cc47-d6f5-4ec2-8c33-105372d8a97d",
+          "load": 120,
+          "unit": "lb",
+          "reps": 6,
+          "kind": "warmup"
+        },
+        {
+          "id": "cb78fb3a-c426-4e6f-8e07-17e38f1229cb",
+          "load": 200,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "bf60f8f4-0e49-4db1-a86c-efcf6c1979eb",
+          "load": 200,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
