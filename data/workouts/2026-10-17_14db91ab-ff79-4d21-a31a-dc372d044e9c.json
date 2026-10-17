@@ -29,6 +29,33 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "preacher-curl",
+      "equipment": "preacher-curl-machine",
+      "sets": [
+        {
+          "id": "2bb43055-0fbb-4c36-9480-c18b5bf126d5",
+          "load": 40,
+          "unit": "lb",
+          "reps": 5,
+          "kind": "warmup"
+        },
+        {
+          "id": "e9f89dd5-a341-4dfc-8ce4-22ca40482113",
+          "load": 55,
+          "unit": "lb",
+          "reps": 12,
+          "rir": 0
+        },
+        {
+          "id": "79fb61a9-f167-4514-97d2-bc5ad7d3422c",
+          "load": 60,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
