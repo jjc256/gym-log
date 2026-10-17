@@ -133,5 +133,10 @@
       "weighted pull ups",
       "weighted pull-ups"
     ]
+  },
+  {
+    "id": "overhead-tricep-extension",
+    "name": "Overhead tricep extension",
+    "aliases": []
   }
 ]
