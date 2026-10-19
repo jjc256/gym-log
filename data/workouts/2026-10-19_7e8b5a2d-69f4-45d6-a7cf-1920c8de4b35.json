@@ -56,6 +56,60 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "lateral-raise",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "a7b80215-e71f-49b8-b203-1102dc855a3d",
+          "load": 35,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "498e196d-88e9-4ff4-aec1-4ab367ac2e8b",
+          "load": 35,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 5,
+          "side": "left"
+        },
+        {
+          "id": "1cd04f39-3833-4a52-8f71-3e421ca1b174",
+          "load": 45,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0,
+          "side": "left"
+        },
+        {
+          "id": "1f7d306b-d042-46e6-9464-19963cf18f73",
+          "load": 45,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0,
+          "side": "right"
+        },
+        {
+          "id": "3d6b0c3a-e862-4fd4-a542-581eff5cba08",
+          "load": 45,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0,
+          "side": "right"
+        },
+        {
+          "id": "ce807b82-f280-45d1-b8e3-9ad3de51c481",
+          "load": 45,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2,
+          "side": "left"
+        }
+      ]
     }
   ]
 }
