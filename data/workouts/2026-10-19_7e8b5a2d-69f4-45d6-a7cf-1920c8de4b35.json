@@ -1,0 +1,41 @@
+{
+  "id": "7e8b5a2d-69f4-45d6-a7cf-1920c8de4b35",
+  "date": "2026-10-19",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "incline-bench-press",
+      "equipment": "dumbbell",
+      "sets": [
+        {
+          "id": "74db2f12-cc24-4cee-9b95-705d95c1c380",
+          "load": 45,
+          "unit": "lb",
+          "reps": 7,
+          "kind": "warmup"
+        },
+        {
+          "id": "a42dfb0c-5ae6-45a7-8d99-0ce21425b883",
+          "load": 60,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1
+        },
+        {
+          "id": "4bca384d-b615-4c64-93d9-3b120a83f5fb",
+          "load": 65,
+          "unit": "lb",
+          "reps": 4,
+          "rir": 0
+        },
+        {
+          "id": "f8c1711e-cf4a-43f6-a2f0-c631c00a0872",
+          "load": 65,
+          "unit": "lb",
+          "reps": 4,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
