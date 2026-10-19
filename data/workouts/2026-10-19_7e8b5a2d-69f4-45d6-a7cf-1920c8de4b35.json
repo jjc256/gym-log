@@ -36,6 +36,26 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "weighted-pull-ups",
+      "equipment": "bodyweight",
+      "sets": [
+        {
+          "id": "984b44c5-af41-4ec0-b772-cb0c30dc81c1",
+          "load": 30,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 0
+        },
+        {
+          "id": "5cce002e-b5d9-45ab-a789-16c2ad8bc4da",
+          "load": 30,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
