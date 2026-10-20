@@ -138,5 +138,13 @@
     "id": "overhead-tricep-extension",
     "name": "Overhead tricep extension",
     "aliases": []
+  },
+  {
+    "id": "incline-bicep-curl",
+    "name": "Incline bicep curl",
+    "aliases": [
+      "incline dumbbell curl",
+      "incline dumbbell bicep curl"
+    ]
   }
 ]
