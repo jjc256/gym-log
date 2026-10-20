@@ -42,6 +42,26 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "incline-bicep-curl",
+      "equipment": "dumbbells",
+      "sets": [
+        {
+          "id": "cf951d14-e901-472a-958a-13f6129001b9",
+          "load": 30,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1
+        },
+        {
+          "id": "26704ba5-bd70-42df-ade6-628052ba680e",
+          "load": 25,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
