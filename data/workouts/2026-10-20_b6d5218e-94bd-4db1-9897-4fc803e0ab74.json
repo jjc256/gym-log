@@ -100,6 +100,26 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "abdominal-crunch",
+      "equipment": "abdominal-crunch-machine",
+      "sets": [
+        {
+          "id": "a5ff1764-89d5-4c39-a6cc-633a2e8b7eaf",
+          "load": 110,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "7f1b0e15-e382-47b1-ac33-3a3ab6a9db2b",
+          "load": 110,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
