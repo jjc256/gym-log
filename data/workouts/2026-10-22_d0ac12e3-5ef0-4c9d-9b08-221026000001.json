@@ -29,6 +29,26 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "weighted-pull-up",
+      "equipment": "pull-up-bar",
+      "sets": [
+        {
+          "id": "d0ac12e3-5ef0-4c9d-9b08-221026000005",
+          "load": 30,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2
+        },
+        {
+          "id": "d0ac12e3-5ef0-4c9d-9b08-221026000006",
+          "load": 30,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
