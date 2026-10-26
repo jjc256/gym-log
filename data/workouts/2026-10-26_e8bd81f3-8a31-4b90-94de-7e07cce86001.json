@@ -123,6 +123,19 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "leg-press",
+      "equipment": "leg-press-machine",
+      "sets": [
+        {
+          "id": "e8bd81f3-8a31-4b90-94de-7e07cce86015",
+          "load": 190,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 5
+        }
+      ]
     }
   ]
 }
