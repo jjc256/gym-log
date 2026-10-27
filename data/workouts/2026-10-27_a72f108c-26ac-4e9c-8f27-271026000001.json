@@ -100,6 +100,25 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "leg-curl",
+      "equipment": "leg-curl-machine",
+      "sets": [
+        {
+          "id": "a72f108c-26ac-4e9c-8f27-271026000012",
+          "load": 160,
+          "unit": "lb",
+          "reps": 4
+        },
+        {
+          "id": "a72f108c-26ac-4e9c-8f27-271026000013",
+          "load": 140,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
