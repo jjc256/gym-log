@@ -22,6 +22,26 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "a72f108c-26ac-4e9c-8f27-271026000004",
+          "load": 190,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "a72f108c-26ac-4e9c-8f27-271026000005",
+          "load": 200,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
