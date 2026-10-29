@@ -96,6 +96,19 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "preacher-curl",
+      "equipment": "bicep-curl-machine",
+      "sets": [
+        {
+          "id": "f14ad5c0-8b29-4df0-b37f-29c106000012",
+          "load": 65,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
