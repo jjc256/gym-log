@@ -109,6 +109,19 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "hammer-curl",
+      "equipment": "bicep-curl-machine",
+      "sets": [
+        {
+          "id": "f14ad5c0-8b29-4df0-b37f-29c106000013",
+          "load": 55,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
