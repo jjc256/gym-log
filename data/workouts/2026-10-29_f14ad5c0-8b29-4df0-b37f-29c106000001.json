@@ -1,0 +1,27 @@
+{
+  "id": "f14ad5c0-8b29-4df0-b37f-29c106000001",
+  "date": "2026-10-29",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "weighted-pull-up",
+      "equipment": "weight-belt",
+      "sets": [
+        {
+          "id": "f14ad5c0-8b29-4df0-b37f-29c106000002",
+          "load": 30,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0
+        },
+        {
+          "id": "f14ad5c0-8b29-4df0-b37f-29c106000003",
+          "load": 30,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
