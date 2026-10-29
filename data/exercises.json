@@ -146,5 +146,12 @@
       "incline dumbbell curl",
       "incline dumbbell bicep curl"
     ]
+  },
+  {
+    "id": "dip",
+    "name": "Dip",
+    "aliases": [
+      "dips"
+    ]
   }
 ]
