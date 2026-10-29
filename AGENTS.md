@@ -5,6 +5,7 @@ This repository is a personal gym log. Prefer the simplest representation that p
 ## Data rules
 
 - Reuse canonical exercise and location IDs from `data/exercises.json` and `data/locations.json`.
+- Before creating or assigning an equipment/machine ID for any exercise, search existing workout data for all equipment IDs already used with that exercise. Reuse an existing ID for the same equipment, and consolidate synonymous IDs; create a new ID only for genuinely distinct equipment. Do not merge genuinely different machines or equipment merely because they share an exercise name.
 - An exercise block contains `exercise`, `sets`, optional `equipment`, and optional `notes`.
 - A set contains `id` and `reps`, plus optional `load` + `unit`, `rir`, `rpe`, `side`, `kind`, and `notes`.
 - Omit fields whose value is effectively `n/a` when the schema allows it. Tables may render missing values as `n/a`, but non-table UI should not show literal `n/a`.
