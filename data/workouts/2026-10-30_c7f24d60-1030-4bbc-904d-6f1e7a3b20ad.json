@@ -1,0 +1,27 @@
+{
+  "id": "c7f24d60-1030-4bbc-904d-6f1e7a3b20ad",
+  "date": "2026-10-30",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "pec-fly",
+      "equipment": "rear-delt-pec-fly-machine",
+      "sets": [
+        {
+          "id": "c7f24d60-1030-4bbc-904d-6f1e7a3b20ae",
+          "load": 150,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0
+        },
+        {
+          "id": "c7f24d60-1030-4bbc-904d-6f1e7a3b20af",
+          "load": 150,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
