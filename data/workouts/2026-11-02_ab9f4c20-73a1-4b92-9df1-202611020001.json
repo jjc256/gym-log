@@ -1,0 +1,24 @@
+{
+  "id": "ab9f4c20-73a1-4b92-9df1-202611020001",
+  "date": "2026-11-02",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "pull-up",
+      "equipment": "bodyweight",
+      "notes": "Started doing pull-ups fully in the frontal plane.",
+      "sets": [
+        {
+          "id": "ab9f4c20-73a1-4b92-9df1-202611020002",
+          "reps": 9,
+          "rir": 0
+        },
+        {
+          "id": "ab9f4c20-73a1-4b92-9df1-202611020003",
+          "reps": 6,
+          "rir": 0
+        }
+      ]
+    }
+  ]
+}
