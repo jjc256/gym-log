@@ -98,6 +98,26 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "tricep-extension",
+      "equipment": "tricep-extension-machine",
+      "sets": [
+        {
+          "id": "ab9f4c20-73a1-4b92-9df1-202611020013",
+          "load": 65,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 0
+        },
+        {
+          "id": "ab9f4c20-73a1-4b92-9df1-202611020014",
+          "load": 65,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
