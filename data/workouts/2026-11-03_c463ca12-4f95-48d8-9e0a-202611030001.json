@@ -95,6 +95,26 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "bicep-curl",
+      "equipment": "dumbbells",
+      "sets": [
+        {
+          "id": "c463ca12-4f95-48d8-9e0a-202611030011",
+          "load": 35,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        },
+        {
+          "id": "c463ca12-4f95-48d8-9e0a-202611030012",
+          "load": 35,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
