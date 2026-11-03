@@ -153,5 +153,10 @@
     "aliases": [
       "dips"
     ]
+  },
+  {
+    "id": "kelso-shrug",
+    "name": "Kelso shrug",
+    "aliases": []
   }
 ]
