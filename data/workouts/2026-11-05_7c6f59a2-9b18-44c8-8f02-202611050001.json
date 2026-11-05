@@ -29,6 +29,22 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "pull-up",
+      "equipment": "bodyweight",
+      "sets": [
+        {
+          "id": "7c6f59a2-9b18-44c8-8f02-202611050005",
+          "reps": 7,
+          "rir": 1
+        },
+        {
+          "id": "7c6f59a2-9b18-44c8-8f02-202611050006",
+          "reps": 7,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
