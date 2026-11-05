@@ -45,6 +45,21 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "lateral-raise",
+      "equipment": "cable-machine",
+      "notes": "Realized I should rest my shoulder after a volleyball injury.",
+      "sets": [
+        {
+          "id": "7c6f59a2-9b18-44c8-8f02-202611050007",
+          "load": 55,
+          "unit": "lb",
+          "reps": 3,
+          "rir": 0,
+          "side": "right"
+        }
+      ]
     }
   ]
 }
