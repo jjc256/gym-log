@@ -100,6 +100,26 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "rear-delt-fly",
+      "equipment": "rear-delt-pec-fly-machine",
+      "sets": [
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060012",
+          "load": 100,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 3
+        },
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060013",
+          "load": 110,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
