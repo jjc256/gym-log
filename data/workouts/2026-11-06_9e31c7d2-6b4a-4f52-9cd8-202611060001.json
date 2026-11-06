@@ -42,6 +42,44 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060006",
+          "load": 100,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 1,
+          "side": "left"
+        },
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060007",
+          "load": 100,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 3,
+          "side": "right"
+        },
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060008",
+          "load": 100,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 2,
+          "side": "left"
+        },
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060009",
+          "load": 100,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 4,
+          "side": "right"
+        }
+      ]
     }
   ]
 }
