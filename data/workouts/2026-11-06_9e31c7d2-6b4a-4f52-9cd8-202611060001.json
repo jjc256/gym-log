@@ -80,6 +80,26 @@
           "side": "right"
         }
       ]
+    },
+    {
+      "exercise": "kelso-shrug",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060010",
+          "load": 240,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "9e31c7d2-6b4a-4f52-9cd8-202611060011",
+          "load": 240,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
