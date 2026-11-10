@@ -81,6 +81,19 @@
         }
       ],
       "notes": "Supinated curl"
+    },
+    {
+      "exercise": "bicep-curl",
+      "equipment": "dumbbells",
+      "sets": [
+        {
+          "id": "b17ca0e4-7d22-4cf3-905b-202611100010",
+          "load": 35,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
