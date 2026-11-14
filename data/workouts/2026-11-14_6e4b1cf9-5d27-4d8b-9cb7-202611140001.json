@@ -80,6 +80,26 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "overhead-tricep-extension",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "6e4b1cf9-5d27-4d8b-9cb7-202611140010",
+          "load": 60,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        },
+        {
+          "id": "6e4b1cf9-5d27-4d8b-9cb7-202611140011",
+          "load": 60,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 1
+        }
+      ]
     }
   ]
 }
