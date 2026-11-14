@@ -1,0 +1,27 @@
+{
+  "id": "6e4b1cf9-5d27-4d8b-9cb7-202611140001",
+  "date": "2026-11-14",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "overhead-press",
+      "equipment": "overhead-press-machine",
+      "sets": [
+        {
+          "id": "6e4b1cf9-5d27-4d8b-9cb7-202611140002",
+          "load": 150,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 2
+        },
+        {
+          "id": "6e4b1cf9-5d27-4d8b-9cb7-202611140003",
+          "load": 150,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        }
+      ]
+    }
+  ]
+}
