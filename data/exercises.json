@@ -83,6 +83,15 @@
     ]
   },
   {
+    "id": "sagittal-row",
+    "name": "Sagittal row",
+    "aliases": [
+      "saggital row",
+      "single-arm seated row",
+      "single arm seated row"
+    ]
+  },
+  {
     "id": "overhead-press",
     "name": "Overhead press",
     "aliases": [
