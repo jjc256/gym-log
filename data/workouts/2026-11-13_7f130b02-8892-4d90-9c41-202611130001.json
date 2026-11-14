@@ -1,0 +1,45 @@
+{
+  "id": "7f130b02-8892-4d90-9c41-202611130001",
+  "date": "2026-11-13",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "seated-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "7f130b02-8892-4d90-9c41-202611130002",
+          "load": 120,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "7f130b02-8892-4d90-9c41-202611130003",
+          "load": 120,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1,
+          "side": "left"
+        },
+        {
+          "id": "7f130b02-8892-4d90-9c41-202611130004",
+          "load": 120,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "7f130b02-8892-4d90-9c41-202611130005",
+          "load": 120,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
+    }
+  ]
+}
