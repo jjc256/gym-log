@@ -158,5 +158,10 @@
     "id": "kelso-shrug",
     "name": "Kelso shrug",
     "aliases": []
+  },
+  {
+    "id": "spinal-flexion",
+    "name": "Spinal flexion",
+    "aliases": []
   }
 ]
