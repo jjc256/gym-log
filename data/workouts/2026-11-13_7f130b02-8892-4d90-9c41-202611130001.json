@@ -93,6 +93,19 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "spinal-flexion",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "7f130b02-8892-4d90-9c41-202611130011",
+          "load": 150,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 5
+        }
+      ]
     }
   ]
 }
