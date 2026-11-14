@@ -32,7 +32,7 @@
     },
     {
       "exercise": "overhead-press",
-      "equipment": "machine",
+      "equipment": "overhead-press-machine",
       "sets": [
         {
           "id": "3e8b1f64-a2c7-4d95-9b30-6f1a5c7e2d84",
