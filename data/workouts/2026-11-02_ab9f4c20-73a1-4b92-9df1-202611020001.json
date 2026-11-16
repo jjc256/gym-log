@@ -61,14 +61,16 @@
           "load": 45,
           "unit": "lb",
           "reps": 10,
-          "rir": 1
+          "rir": 1,
+          "side": "right"
         },
         {
           "id": "ab9f4c20-73a1-4b92-9df1-202611020009",
           "load": 45,
           "unit": "lb",
           "reps": 9,
-          "rir": 0
+          "rir": 0,
+          "side": "left"
         }
       ]
     },
