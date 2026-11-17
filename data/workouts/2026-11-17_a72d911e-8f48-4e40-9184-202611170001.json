@@ -100,6 +100,26 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "bicep-curl",
+      "equipment": "dumbbells",
+      "sets": [
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170012",
+          "load": 40,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 0
+        },
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170013",
+          "load": 35,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
