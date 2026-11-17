@@ -80,6 +80,26 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "leg-curl",
+      "equipment": "leg-curl-machine",
+      "sets": [
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170010",
+          "load": 150,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 1
+        },
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170011",
+          "load": 140,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
