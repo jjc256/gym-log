@@ -22,6 +22,26 @@
           "rir": 1
         }
       ]
+    },
+    {
+      "exercise": "hammer-curl",
+      "equipment": "hammer-curl-machine",
+      "sets": [
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170004",
+          "load": 65,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2
+        },
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170005",
+          "load": 65,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
