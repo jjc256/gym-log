@@ -1,0 +1,27 @@
+{
+  "id": "a72d911e-8f48-4e40-9184-202611170001",
+  "date": "2026-11-17",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "chest-press",
+      "equipment": "chest-press-machine",
+      "sets": [
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170002",
+          "load": 210,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1
+        },
+        {
+          "id": "a72d911e-8f48-4e40-9184-202611170003",
+          "load": 210,
+          "unit": "lb",
+          "reps": 4,
+          "rir": 1
+        }
+      ]
+    }
+  ]
+}
