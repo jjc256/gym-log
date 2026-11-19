@@ -96,6 +96,26 @@
           "rir": 2
         }
       ]
+    },
+    {
+      "exercise": "rear-delt-fly",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "c7d419a2-92f5-4e81-9c67-202611190012",
+          "load": 35,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2
+        },
+        {
+          "id": "c7d419a2-92f5-4e81-9c67-202611190013",
+          "load": 35,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 2
+        }
+      ]
     }
   ]
 }
