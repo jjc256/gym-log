@@ -60,6 +60,44 @@
           "side": "left"
         }
       ]
+    },
+    {
+      "exercise": "sagittal-row",
+      "equipment": "seated-row-machine",
+      "sets": [
+        {
+          "id": "b2026112-0000-4000-8000-202611200008",
+          "load": 115,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 2,
+          "side": "right"
+        },
+        {
+          "id": "b2026112-0000-4000-8000-202611200009",
+          "load": 115,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 3,
+          "side": "left"
+        },
+        {
+          "id": "b2026112-0000-4000-8000-202611200010",
+          "load": 115,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 3,
+          "side": "right"
+        },
+        {
+          "id": "b2026112-0000-4000-8000-202611200011",
+          "load": 115,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
     }
   ]
 }
