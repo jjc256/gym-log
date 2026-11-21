@@ -1,0 +1,27 @@
+{
+  "id": "b2026112-1000-4000-8000-202611210001",
+  "date": "2026-11-21",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "overhead-press",
+      "equipment": "overhead-press-machine",
+      "sets": [
+        {
+          "id": "b2026112-1000-4000-8000-202611210002",
+          "load": 150,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2
+        },
+        {
+          "id": "b2026112-1000-4000-8000-202611210003",
+          "load": 150,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2
+        }
+      ]
+    }
+  ]
+}
