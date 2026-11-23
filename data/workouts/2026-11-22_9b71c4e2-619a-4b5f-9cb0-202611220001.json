@@ -119,6 +119,26 @@
           "rir": 0
         }
       ]
+    },
+    {
+      "exercise": "overhead-press",
+      "equipment": "overhead-press-machine",
+      "sets": [
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220013",
+          "load": 170,
+          "unit": "lb",
+          "reps": 1,
+          "rir": 1
+        },
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220014",
+          "load": 190,
+          "unit": "lb",
+          "reps": 1,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
