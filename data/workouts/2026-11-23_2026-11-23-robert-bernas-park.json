@@ -1,0 +1,61 @@
+{
+  "id": "2026-11-23-robert-bernas-park",
+  "date": "2026-11-23",
+  "location": "robert-bernas-park",
+  "exercises": [
+    {
+      "exercise": "pull-up",
+      "equipment": "pull-up-bar",
+      "sets": [
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-1",
+          "load": 0,
+          "unit": "lb",
+          "reps": 11,
+          "rir": 1,
+          "side": "n/a"
+        },
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-2",
+          "load": 0,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 1,
+          "side": "n/a"
+        },
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-3",
+          "load": 0,
+          "unit": "lb",
+          "reps": 9,
+          "rir": 0,
+          "side": "n/a"
+        },
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-4",
+          "load": 0,
+          "unit": "lb",
+          "reps": 7,
+          "rir": 1,
+          "side": "n/a"
+        },
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-5",
+          "load": 0,
+          "unit": "lb",
+          "reps": 8,
+          "rir": 0,
+          "side": "n/a"
+        },
+        {
+          "id": "2026-11-23-robert-bernas-park-pull-up-6",
+          "load": 0,
+          "unit": "lb",
+          "reps": 6,
+          "rir": 2,
+          "side": "n/a"
+        }
+      ]
+    }
+  ]
+}
