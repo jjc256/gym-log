@@ -1,0 +1,29 @@
+{
+  "id": "9b71c4e2-619a-4b5f-9cb0-202611220001",
+  "date": "2026-11-22",
+  "location": "collegetown-terrace",
+  "exercises": [
+    {
+      "exercise": "lateral-raise",
+      "equipment": "cable-machine",
+      "sets": [
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220002",
+          "load": 55,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1,
+          "side": "right"
+        },
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220003",
+          "load": 55,
+          "unit": "lb",
+          "reps": 5,
+          "rir": 1,
+          "side": "left"
+        }
+      ]
+    }
+  ]
+}
