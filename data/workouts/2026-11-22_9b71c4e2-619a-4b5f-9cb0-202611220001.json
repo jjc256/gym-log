@@ -108,6 +108,17 @@
           "rir": 10
         }
       ]
+    },
+    {
+      "exercise": "muscle-up",
+      "equipment": "bodyweight",
+      "sets": [
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220012",
+          "reps": 2,
+          "rir": 0
+        }
+      ]
     }
   ]
 }
