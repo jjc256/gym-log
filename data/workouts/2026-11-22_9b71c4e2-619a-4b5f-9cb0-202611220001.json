@@ -34,14 +34,32 @@
           "load": 25,
           "unit": "lb",
           "reps": 10,
-          "rir": 5
+          "rir": 5,
+          "side": "right"
+        },
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220007",
+          "load": 25,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 5,
+          "side": "left"
         },
         {
           "id": "9b71c4e2-619a-4b5f-9cb0-202611220005",
           "load": 25,
           "unit": "lb",
           "reps": 10,
-          "rir": 3
+          "rir": 3,
+          "side": "right"
+        },
+        {
+          "id": "9b71c4e2-619a-4b5f-9cb0-202611220008",
+          "load": 25,
+          "unit": "lb",
+          "reps": 10,
+          "rir": 3,
+          "side": "left"
         }
       ]
     },
